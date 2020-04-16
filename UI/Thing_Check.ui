@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1286</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>物品位置數量盤點</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="wire_images.qrc">
+    <normaloff>:/images/cat.ico</normaloff>:/images/cat.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>531</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+
+QTabBar::tab {
+		border-top:0px solid rgb(45, 45, 45);
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		color: rgb(175, 175, 175);
+		height: 329px;
+		min-width: 85px;
+		margin-right: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
+}
+</string>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::West</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Triangular</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>增删改查</string>
+     </attribute>
+     <widget class="QLineEdit" name="lin_online">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>420</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_ng_address">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>500</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_ok_address">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>500</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_ng">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>340</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_typeof">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>250</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_thing_truename">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>160</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>300</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>物品种类</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="com_desc">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>30</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <item>
+       <property name="text">
+        <string>修改</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>删除</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>增加</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>210</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>物品条形码</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_ok">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>250</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>550</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>OK位置</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>590</y>
+        <width>71</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>确认</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_secureqty">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>420</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>540</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>NG位置</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_txm">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>160</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>470</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>产线物品数量</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>300</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>库存OK数</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>390</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>报废数量</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>90</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>清除</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>210</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>物品名称</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>470</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>安全数量</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>390</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>库存NG数</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_bf">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>340</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>盘点</string>
+     </attribute>
+     <widget class="QComboBox" name="com_ok_ng_on_bf">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>10</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>OK品盤點</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>NG品盤點</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>在線品盤點</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>報廢品盤點</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLineEdit" name="lin_tab_txm">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lin_tab_peidiao">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>280</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>170</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>條形碼</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>330</y>
+        <width>72</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>盤點數量</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>450</y>
+        <width>93</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>確認</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lab_tab_thingnum">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>280</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">*{background:rgb(100, 170, 220);}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>180</y>
+        <width>72</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>物品名稱</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>330</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>現有數量</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lab_tab_thingname">
+      <property name="geometry">
+       <rect>
+        <x>251</x>
+        <y>119</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">*{background:rgb(100, 170, 220);}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>60</y>
+        <width>51</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>清除</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="lab_lh_address">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>20</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>20</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>刷新</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tab_thing_all">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>70</y>
+      <width>701</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <column>
+     <property name="text">
+      <string>物品条码</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>物品名称</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>物品种类</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>库存OK数</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>库存NG数</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>产线数量</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>报废数量</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>安全数量</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>OK位置</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>NG位置</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="but_return_bind_wire">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">*{background:#00000000;}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="wire_images.qrc">
+      <normaloff>:/images/retutn.ico</normaloff>:/images/retutn.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1286</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>项目</string>
+    </property>
+    <addaction name="action_to_lend"/>
+    <addaction name="action_lend"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <action name="set_machine_user">
+   <property name="text">
+    <string>设定机种</string>
+   </property>
+  </action>
+  <action name="act_set_wire_malh">
+   <property name="text">
+    <string>设定线材料号</string>
+   </property>
+  </action>
+  <action name="action_to_lend">
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/upload.png</normaloff>:/images/upload.png</iconset>
+   </property>
+   <property name="text">
+    <string>導入數據</string>
+   </property>
+  </action>
+  <action name="action_lend">
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/lend.ico</normaloff>:/images/lend.ico</iconset>
+   </property>
+   <property name="text">
+    <string>導出數據</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="wire_images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Set_Table()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>922</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1073</x>
+     <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lin_txm</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Seek_wireinfo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>214</x>
+     <y>245</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>132</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Clean_All()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>337</x>
+     <y>167</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>414</x>
+     <y>32</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>confire_reslute()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>362</x>
+     <y>711</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>301</x>
+     <y>805</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>get_tabwidget_int()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>234</x>
+     <y>104</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>275</x>
+     <y>21</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tab_thing_all</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>TEST()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>686</x>
+     <y>150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>622</x>
+     <y>26</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>confire_reslute()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>343</x>
+     <y>551</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>428</x>
+     <y>799</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lin_tab_txm</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>thing_showinfo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>179</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>200</x>
+     <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Clean_All()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>326</x>
+     <y>147</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>481</x>
+     <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>but_return_bind_wire</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>return_mainwindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>41</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>92</x>
+     <y>46</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>Set_Table()</slot>
+  <slot>Clean_All()</slot>
+  <slot>Set_windows_date()</slot>
+  <slot>confire_reslute()</slot>
+  <slot>TEST()</slot>
+  <slot>Seek_wireinfo()</slot>
+  <slot>get_tabwidget_int()</slot>
+  <slot>thing_showinfo()</slot>
+  <slot>return_mainwindow()</slot>
+ </slots>
+</ui>

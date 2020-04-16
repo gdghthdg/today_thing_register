@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1286</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>機種是否使用設定</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>cat.ico</normaloff>cat.ico</iconset>
+  </property>
+  <widget class="QLineEdit" name="lin_machine">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>79</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>130</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>       机种</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>229</x>
+     <y>354</y>
+     <width>161</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>     是否使用</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>229</x>
+     <y>375</y>
+     <width>191</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>使用True,不使用False</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>590</y>
+     <width>75</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确认</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>590</y>
+     <width>75</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>清除</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>20</y>
+     <width>114</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>机种使用情况</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>80</y>
+     <width>531</width>
+     <height>631</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微軟正黑體</family>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>150</number>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>机种</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>是否使用</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Kitting</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="background">
+     <color>
+      <red>255</red>
+      <green>255</green>
+      <blue>255</blue>
+     </color>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>14</y>
+     <width>40</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QPushButton{
+	font-size: 14px;/*字体大小*/
+	color:white;/*颜色*/
+	background: #00000000;/*背景颜色*/
+	border-radius:40px;
+	
+}
+
+QPushButton:hover{
+}
+
+QPushButton:pressed
+{
+  	/*padding-left:6px;*/
+	padding-top:9px;
+
+}
+
+QPushButton{
+	background:#00000000;
+	border-radius:7px;
+	
+}
+QPushButton:pressed{/*点击状态*/
+	/*padding-left:3px;/*左边距*/
+	padding-top:9px;/*上边距*/
+}
+
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/Refresh_24px_1158474_easyicon.net.ico</normaloff>:/images/Refresh_24px_1158474_easyicon.net.ico</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>22</width>
+     <height>22</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="but_return">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">*{background:#00000000;}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/retutn.ico</normaloff>:/images/retutn.ico</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="com_machine_use">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>300</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <item>
+    <property name="text">
+     <string>True</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>False</string>
+    </property>
+   </item>
+  </widget>
+ </widget>
+ <resources>
+  <include location="wire_images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>tableWidget</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
+   <receiver>Form</receiver>
+   <slot>TEST()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>690</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>281</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>pressed()</signal>
+   <receiver>Form</receiver>
+   <slot>confire_reslute()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>210</x>
+     <y>590</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>42</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>pressed()</signal>
+   <receiver>Form</receiver>
+   <slot>Clean_All()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>340</x>
+     <y>590</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>259</x>
+     <y>344</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>pressed()</signal>
+   <receiver>Form</receiver>
+   <slot>Clean_All()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>860</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>648</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>but_return</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>return_mainwindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>23</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>184</x>
+     <y>39</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lin_machine</sender>
+   <signal>returnPressed()</signal>
+   <receiver>Form</receiver>
+   <slot>seek_machine_address()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>279</x>
+     <y>94</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>338</x>
+     <y>41</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>TEST()</slot>
+  <slot>confire_reslute()</slot>
+  <slot>Clean_All()</slot>
+  <slot>return_mainwindow()</slot>
+  <slot>save_data()</slot>
+  <slot>seek_machine_address()</slot>
+ </slots>
+</ui>

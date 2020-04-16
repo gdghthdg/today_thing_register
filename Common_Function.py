@@ -1,3 +1,118 @@
+"""
+a common function include
+
+一个弹出输入框的
+# 显示输入对话框
+# 字符串类型，标题、提示信息、默认输入
+# text,ok=QInputDialog.getText(self, "title", "User name:", QLineEdit.Normal, '>>>:')
+
+
+#一个输入框
+# my_list = ['1', '2', '3']
+# my_str, ok = QInputDialog.getItem(self, "下拉框", '提示', my_list)
+# #print(my_str, ok)
+
+设置窗口无边框
+# self.setWindowFlags(Qt.FramelessWindowHint)
+
+#把关闭取消掉
+# self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint)
+
+# 禁止窗口关闭与放大
+# self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint |  # 使能最小化按钮
+#                     QtCore.Qt.WindowCloseButtonHint |  # 使能关闭按钮
+#                     QtCore.Qt.WindowStaysOnTopHint)
+
+#禁止窗口拉伸
+#self.setFixedSize(self.width(), self.height())
+
+#tablewidget一个自适应
+# self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+#一个自动换行
+# self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
+# self.tableWidget.setWordWrap(True)
+
+
+#把窗口放在最前面,不准切换窗口,顶级窗口
+self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+
+
+# 透明处理，移动需要拖动数字
+#         self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.SubWindow | QtCore.Qt.WindowStaysOnTopHint)
+#         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+
+
+commin class
+    替换字符串                     2>replace str(),两个参数,一个字符串,一个替换的list,返回替换掉的字符串
+    去掉除英文与数字外的字符       1>get_english_math()输入的串,返回字符串
+    得到时间2019-01-01 00:00:000  0>Get_Now_Time(),返回str时间
+    返回一个ftp引用,              0>Ftp(),返回一个ftp引用
+    执行sql语句,不返回任何值      1>Execute_Sql_No_Get_Date(sql_order),参数一个sql命令
+    执行sql查询命令,返回查询结果  1>Execute_Sql_Get_Date(sql_order),参数一个sql命令,返回执行命令的结果
+    从d盘读取机种size            0>Read_loadsize_info(),没有参数,返回一个list的尺寸
+    从d盘读取线体line            0>Read_load_info(),没有参数,返回一个list的线体
+
+
+
+father class(QMainWindow)
+    程序退出                      0>exit_exe()程序退出
+    设置gif图片                   2>set_gif(),两个参数,一个gif的地址,一个控件的引用
+    设置琴系统的托盘              0>set_system_stock(),一个图片地址
+    提示1个选择                   1>Message_one().一个参数,要出现提示的标题,返回你选择的结果,QMessageBox.Yes|QMessageBox.No
+    提示2个选择                   1>Message_two().二个参数,要出现提示的标题,返回你选择的结果,QMessageBox.Yes|QMessageBox.No
+    窗口居中                      1>center()
+    一个控件输入限制其输入         1>testing_machine(),一个参数,控件的引用
+    从时间往后往前推几天,得到时间  2>Date_delete()两个参数,一个推前推后天数,一个现在标准时间
+    两个不同日期相隔天数           2>data_sub()两个参数,一个日期,一个日期
+    从界面打开要选择的文件夹,导入  3>to_lend_function().三个参数,一个删除哪个sql表的sql语句,一个sql表,一个是从excel中要取多少列
+    从界面导出数据                 1>lend_function()一个表格控件的名称引用
+    一个实时反映本地时间           0>init_timer()其调用了update_time(),返回了一个时间
+    lineedit自动补全               2>init_lineedit(),两个参数,一个lineedit的名称引用,一个补全的list数组
+    combobox自动补全               2>init_combobox().两个参数,一个combobox的名称引用,一个补全的list的数组
+
+
+Windows_Move class
+    鼠标按下事件                    mousePressEvent()
+    鼠标移动事件                    mouseMoveEvent()
+
+
+CommonHelper class
+    读取Qss                         1>readQss(),一个参数,style的address
+
+
+All_Class_common_Set class
+    pass
+
+tablewidget所有的增删改查
+Common_Table(QMainWindow)
+    从sql得到数据,打印在tablewidget    3>Set_Table() 三个参数 一个get sql查询结果,一个tablewidget_name引用,一个打印几列
+    得到table表中的数据,显示在lineedit 3>Get_Table_Click_Data() 三个参数,一个打印在lineedit中的widget_name数组,一个tablewidget引用,一个点击的是第几行
+    根据一个数据得到所有的详细数据     2>Seek_table_info() 两个参数,一个查找sql指令,一个要打印的所有widget数组
+    得到所有widget中text(为了增修)    1>Get_Window_Info() 一个参数,一个所有的lineedit数组
+    上传增加修改的结果到sql server    3>Confire_Change()  三个参数,一个lineedit所有数组,一个combobox中包含增删改查的,一个上传的sql_table_name
+
+
+窗口事件的重写,继承
+Window_event class
+    当窗口关闭时                      closeEvent()
+    当窗口有动作改变时                changEvent()
+
+
+键盘事件重写,继承
+Keyboard_event class
+    键盘按下事件                      keyPressEvent()
+    键盘上升事件                      keyReleaseEvent()
+
+
+
+鼠标事件的重写,继承
+mouse_event class
+    鼠标移动事件                      mouseMoveEvent()
+
+
+"""
+
+
 from traceback import print_exc
 import re
 import socket
@@ -30,20 +145,12 @@ time_now=datetime.now()
 Time_now=str(time_now)[:10]
 
 
-def set_server_ip_admin_password_database(ip,admin,password,database):
-    global server_ip,server_admin,server_password,server_database
-    server_ip=ip
-    server_admin=admin
-    server_password=password
-    server_database=database
-
-
 
 # 显示输入对话框
 # 字符串类型，标题、提示信息、默认输入
 # text,ok=QInputDialog.getText(self, "title", "User name:", QLineEdit.Normal, '>>>:')
 
-#彈出一个输入框
+#一个输入框
 # my_list = ['1', '2', '3']
 # my_str, ok = QInputDialog.getItem(self, "下拉框", '提示', my_list)
 # #print(my_str, ok)
@@ -70,6 +177,37 @@ def set_server_ip_admin_password_database(ip,admin,password,database):
 
 # self.tablewidget.setWordWrap(True)
 
+# 透明处理，移动需要拖动数字
+#         self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.SubWindow | QtCore.Qt.WindowStaysOnTopHint)
+#         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+
+#打包不能用.jpg
+
+#api接口就是用http,tcp/ip用的嗎
+
+
+#
+
+
+def set_server_ip_admin_password_database(ip,admin,password,database):
+    global server_ip,server_admin,server_password,server_database
+    server_ip=ip
+    server_admin=admin
+    server_password=password
+    server_database=database
+
+
+server_ip='127.0.0.1'
+server_admin='sa'
+server_password='123456'
+server_database='management'
+
+
+
+
+
+
+
 
 #去掉某个标点符号,兩個參數都是list(一个字符型,一个包含去掉字符的数组)
 def replace_str(str_name,replace_son):
@@ -95,33 +233,31 @@ def Get_Now_Time_have_zero():
     now_time = str(datetime.now())[:len(str(datetime.now())) - 7] + ':000'
     return now_time
 
-#一个ftp的函数，返回一个ftp引用,连接不上就要有timeout
+#一个ftp的函数，返回一个ftp引用
 def Ftp():
-    try:
-        ftp = FTP()
-        ftp.encoding = 'BIG5'
-        ftp.set_debuglevel(2)  # 打开调试级别2，显示详细信息
-        ftp.connect("10.178.1.98", 21,timeout=-9)  # 连接的ftp sever和端口
+    ftp = FTP()
+    ftp.encoding = 'BIG5'
+    ftp.set_debuglevel(2)  # 打开调试级别2，显示详细信息
+    ftp.connect("10.178.1.98", 21,timeout=55)  # 连接的ftp sever和端口
 
-        ftp.login("hblcmftp", "exploration")  # 连接的用户名，密码
-        ftp.dir()
+    ftp.login("hblcmftp", "exploration")  # 连接的用户名，密码
+    ftp.dir()
 
-        return ftp
-    except Exception:
-        print_exc()
+    return ftp
+
 
 # 执行SQL，而不要数据(sql指令)
 def Execute_Sql_No_Get_Date(sql_order):
     try:
         #print('47=%s'%sql_order)
-        Connect = connect(server_ip, server_admin, server_password, server_database,login_timeout=1)  # 建立连接
+        #Connect = connect('172.17.130.106', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
+        Connect = connect(server_ip, server_admin, server_password, server_database, login_timeout=1)  # 建立连接
 
         cursor = Connect.cursor()
         cursor.execute(sql_order)
         Connect.commit()
         Connect.close()
         cursor.close()
-
     except Exception:
         print_exc()
 
@@ -129,8 +265,11 @@ def Execute_Sql_No_Get_Date(sql_order):
 #  执行SQL语句并且有获取数据的要求(SQL指令)
 def Execute_Sql_Get_Date(sql_order):
     try:
+
         ##print(sql_order)
-        Connect = connect(server_ip, server_admin, server_password, server_database,login_timeout=1)  # 建立连接
+        #Connect = connect('172.17.130.106', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
+        Connect = connect(server_ip, server_admin, server_password, server_database, login_timeout=1)  # 建立连接
+
         cursor = Connect.cursor()
         cursor.execute(sql_order)
         get_sql_data=cursor.fetchall()
@@ -139,6 +278,7 @@ def Execute_Sql_Get_Date(sql_order):
         cursor.close()
         ##print(get_sql_data)
         return get_sql_data
+
     except Exception:
         print_exc(file=open('D://LOG//%s.txt'%Time_now,'a'))
 
@@ -239,7 +379,7 @@ class No_Main_Window(QMainWindow):
         #print('有关闭的动作')
 
 
-    # def changeEvent(self, event):
+    def changeEvent(self, event):
     #     # 顶层窗口激活状态改变
     #     if event.type() == QEvent.ActivationChange:
     #         #print('顶层窗口变化')
@@ -252,9 +392,10 @@ class No_Main_Window(QMainWindow):
     #     #print(self.isMinimized())
     #
     #     #这是判断是否最小化的情况
-    #     if self.isMinimized():
-    #         #self.hide()
-    #         #print('窗口最小化')
+        if self.isMinimized():
+            pass
+            #self.hide()
+            #print('窗口最小化')
     #     else:
     #         #print('窗口不是最小化')
     #
@@ -276,6 +417,12 @@ class Farther(QMainWindow):
     #         str = ''.join(str).strip('\n')
     #     self.setStyleSheet(str)
     #     self.show()
+    #程序退出的總集
+
+    def exit_exe(self):
+        os._exit(0)
+        # exit(1)
+        # return
 
     #设置gif图片,(输入gif的地址,label的pyqt 的名称)
     def set_gif(self,gif_address,lab_widget):
@@ -294,8 +441,8 @@ class Farther(QMainWindow):
             #self.tray.activated.connect(self.TuoPanEvent)  # 设置托盘点击事件处理函数
 
             self.tray_menu = QMenu(QApplication.desktop())  # 创建菜单
-            self.RestoreAction = QAction(u'还原 ', self, triggered=self.show)  # 添加一级菜单动作选项(还原主窗口)
-            self.QuitAction = QAction(u'退出 ', self, triggered=exit)  # 添加一级菜单动作选项(退出程序)
+            self.RestoreAction = QAction(u'还原 ', self, triggered=self.showNormal)  # 添加一级菜单动作选项(还原主窗口)
+            self.QuitAction = QAction(u'退出 ', self, triggered=os._exit)  # 添加一级菜单动作选项(退出程序)
             self.tray_menu.addAction(self.RestoreAction)  # 为菜单添加动作
             self.tray_menu.addAction(self.QuitAction)
             self.tray.setContextMenu(self.tray_menu)  # 设置系统托盘菜单
@@ -380,7 +527,6 @@ class Farther(QMainWindow):
         pValidator = QRegExpValidator(self)
         pValidator.setRegExp(reg)
 
-
     #从一个日期减少/增加的天数,得到另外一个,日期加减(加减天数,一个时间戳)
     def Date_delete(self, day_ago,finally_datetime):  # 从现在（几天）得到几天前的时间
 
@@ -433,7 +579,7 @@ class Farther(QMainWindow):
             #print(fileName_choose)
             #print("文件筛选器类型: ", filetype)
 
-            Connect = connect(server_ip, server_admin, server_password, server_database, login_timeout=1)  # 建立连接
+            Connect = connect('172.17.130.106', 'sa', '123456', 'xueshengxinxi', login_timeout=1)  # 建立连接
             cursor = Connect.cursor()
 
             #这是一个删除指令
@@ -459,17 +605,17 @@ class Farther(QMainWindow):
     #这是machine_contrast导入
 
                 elif order=="MACHINE_LH":
-                    sql_order = "insert into MACHINE_LHTEST1(SIZE,MACHINES,SYSTEMS,JI_OR_SKD,MONDEL,BI,CTAG,BMA,IAS,AGIS,FFC,INV_POWER_WIRE,DRIVER_MARCH,DRIVER,POWER_WIRE,MACHINE_STATIUS,CLASS) values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" \
-                                        % (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13],i[14],'True',i[16])
-    #这是物品与料号的绑定
+                    sql_order = "insert into MACHINE_LH(SIZE,MACHINES,SYSTEMS,JI_OR_SKD,MONDEL,BI,CTAG,BMA,IAS,AGIS,FFC,INV_POWER_WIRE,DRIVER_MARCH,DRIVER,POWER_WIRE,MACHINE_STATIUS) values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" \
+                                        % (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13],i[14],'True')
+
                 elif order=="NC_KUCUN_LH":
                     sql_order = "insert into NC_KUCUN_LH(TYPEOF,TXM,WUPIN_NAME,LH,Thing_March) values('%s','%s','%s','%s','%s')"%(i[0],i[1],i[2],i[3],i[4])
-    #这是物品与数量的绑定excel
+
                 elif order =="NC_KUCUN_SUM":
                     sql_order = "insert into NC_KUCUN_SUMTEST(TYPEOF,TXM,WUPIN_NAME,QTY_OK,QTY_NG,QTY_BF,QTY_ONLINE,SECUREQTY,Location_OK,Location_NG,CDT) values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" % (
                     i[0], i[1], i[2], i[3],i[4], i[5],i[6],i[7],i[8],i[9],Get_Now_Time())
 
-                #print("sql_order:",sql_order)
+
                 cursor.execute(sql_order)
 
 
@@ -546,16 +692,39 @@ class Farther(QMainWindow):
         return time.localtime()
 
 
-    #輸入一個數據,在表格中自動跳轉到時某個地方
-    #tablewidget:控件的名稱
-    #text:要尋找的數據
-    def table_jump_address(self,tablewidget,text):
+    #lineedit 自动补全的function (a lineedit widget,a ist)
+    def init_lineedit(self,lineedit,items_list):
+        # 增加自动补全
+        self.completer = QCompleter(items_list)
+        # 设置匹配模式  有三种： Qt.MatchStartsWith 开头匹配（默认）  Qt.MatchContains 内容匹配  Qt.MatchEndsWith 结尾匹配
+        self.completer.setFilterMode(Qt.MatchContains)
+        # 设置补全模式  有三种： QCompleter.PopupCompletion（默认）  QCompleter.InlineCompletion   QCompleter.UnfilteredPopupCompletion
+        self.completer.setCompletionMode(QCompleter.PopupCompletion)
+        # 给lineedit设置补全器
+        lineedit.setCompleter(self.completer)
 
+    #combobox 自动补全的function (a combobox widget ,a list)
+    def init_combobox(self,combobox,items_list):
+        # 增加选项元素
+        for i in range(len(items_list)):
+            combobox.addItem(items_list[i])
+        combobox.setCurrentIndex(-1)
+
+        # 增加自动补全
+        self.completer = QCompleter(items_list)
+        self.completer.setFilterMode(Qt.MatchContains)
+        self.completer.setCompletionMode(QCompleter.PopupCompletion)
+        combobox.setCompleter(self.completer)
+
+    # 輸入一個數據,在表格中自動跳轉到時某個地方
+    # tablewidget:控件的名稱
+    # text:要尋找的數據
+    def table_jump_address(self, tablewidget, text):
         items = tablewidget.findItems(text, Qt.MatchExactly)
         item = items[0]
         # 选中单元格
 
-        #print("test:",text)
+        # print("test:",text)
 
         item.setSelected(True)
         # 设置单元格的背脊颜色为红
@@ -566,21 +735,27 @@ class Farther(QMainWindow):
         tablewidget.verticalScrollBar().setSliderPosition(row - 8)
 
 
-#这移动
+#这是窗口移动
 class Windows_Move():
 
     def mousePressEvent(self, event):
+
         if event.button() == Qt.LeftButton:
             self.dragPosition = event.globalPos() - self.frameGeometry().topLeft()
             event.accept()
 
     def mouseMoveEvent(self, event):
         try:
+            ##print("mouse_move",self.dragPosition)
+            #print("event:",event)
             if event.buttons() == Qt.LeftButton:
+                #print("窗口位置:",event.globalPos() - self.dragPosition)
                 self.move(event.globalPos() - self.dragPosition)
                 event.accept()
+                #print("accept",event.accept())
         except Exception:
             print_exc(file=open('D://LOG//%s.txt'%Time_now,'a'))
+
 
 
 #这是QSS设置
@@ -594,12 +769,10 @@ class CommonHelper:
             return f.read()
 
 
-
 #继承相同的function
 class All_Class_Common_Set(QMainWindow):
     def All_Class_Common_Set_Funcation(self):
         self.setWindowFlags(Qt.FramelessWindowHint)
-
 
 
 class Common_Table(QMainWindow):
@@ -648,8 +821,8 @@ class Common_Table(QMainWindow):
                 widget_son.setText(wire_info[0][p])
                 p+=1
         except Exception:
-            #print()
             pass
+            #print()
 
 
     #得到界面上的控件(lineedit所有的名称)
@@ -697,4 +870,57 @@ class Common_Table(QMainWindow):
         Execute_Sql_No_Get_Date(sql_order)
         #print('333')
         self.Clear_All()
+
+
+#rewrite mouse event
+#重写鼠标事件
+class Windows_event(QMainWindow):
+
+    def closeEvent(self, event):
+        sender = self.sender()
+        #print(sender)
+        #print(sender.objectName())
+
+        #print('有关闭的动作')
+
+    def changeEvent(self, event):
+        #     # 顶层窗口激活状态改变
+        #     if event.type() == QEvent.ActivationChange:
+        #         #print('顶层窗口变化')
+        #         #self.repaint()
+        #         #self.hide()
+        #     else:
+        #         #print('顶层窗口不变化')
+        #         #self.hide()
+        #
+        #     #print(self.isMinimized())
+        #
+        #     #这是判断是否最小化的情况
+        if self.isMinimized():
+            pass
+            # self.hide()
+            #print('最小化')
+    #     else:
+    #         #print('窗口不是最小化')
+    #
+    #     ##print(self.windowState())
+    #
+
+
+#keyboard event rewrite
+class Keyboard_event(QMainWindow):
+    def keyPressEvent(self, a0: QtGui.QKeyEvent) -> None:
+        pass
+        #print("这是键盘按下事件")
+
+    def keyReleaseEvent(self, a0: QtGui.QKeyEvent) -> None:
+        #print("这是键盘上升事件")
+        pass
+
+
+#mouse_event_rewrite
+class Mouse_event(QMainWindow):
+    def mouseMoveEvent(self, a0: QtGui.QMouseEvent) -> None:
+        #print("鼠标移动事件")
+        pass
 

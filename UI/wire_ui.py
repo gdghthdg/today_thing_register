@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\Administrator\Desktop\20190822\wire_ui.ui'
+# Form implementation generated from reading ui file 'C:\Users\Administrator\Desktop\today_thing_register\UI\wire_ui.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setStyleSheet("\n"
 "*{\n"
-"    background:#ffffff;\n"
+"    background:url(:/images/8.jpg);\n"
 "    font-family:century gothic;\n"
 "    font: 9pt \"微軟正黑體\";\n"
 "}\n"

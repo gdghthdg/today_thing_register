@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>819</width>
+    <height>792</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="wire_images.qrc">
+    <normaloff>:/images/77.ico</normaloff>:/images/77.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+
+  font-family:century gothic;
+  
+}
+
+
+
+
+QPushButton{
+  background:#214264;
+  border-radius:60px;
+  
+}
+
+QToolButton{
+  border-radius:60px;
+  background:#214264;
+}
+
+
+
+QFrame{
+  border-radius:40px;
+  background:#00000000;
+}
+
+QLineEdit{
+  background:transparent;
+  color:#black;
+  border:none;
+  font-size:25px;
+  border-bottom:1px solid #717072
+
+}
+
+QLabel{
+  color:white;
+  font-size:24px;
+}
+
+QPushButton#exit,mini{
+  background:#00000000;
+  border-radius:3px;
+}
+QPushButton#mini{
+  background:#00000000;
+  border-radius:3px;
+}</string>
+  </property>
+  <widget class="QLabel" name="lab_background">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>140</y>
+     <width>501</width>
+     <height>581</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">*{background:rgb(85, 170, 255);}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="toolButton">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>80</y>
+     <width>121</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QToolButton{
+  color:white;
+  border-radius:60px;
+  font-size:24px;
+  }
+
+QToolButton:hover{
+  font-size:26px;
+}
+
+QToolButton:pressed
+{
+  	/*padding-left:6px;左边距*/
+	padding-top:9px;/*上边距*/
+
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/admin.ico</normaloff>:/images/admin.ico</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>64</width>
+     <height>64</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>390</y>
+     <width>271</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">*{color:rgb(85, 170, 255)}</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Normal</enum>
+   </property>
+   <property name="placeholderText">
+    <string>          username</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>590</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QPushButton{
+  color:white;
+  border-radius:20px;
+  font-size:24px;
+  }
+
+QPushButton:hover{
+  font-size:26px;
+}
+
+QPushButton:pressed
+{
+  color:#333;
+  border-radius:15px;
+  background:#49ebff;
+
+}</string>
+   </property>
+   <property name="text">
+    <string>LOGIN</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>549</y>
+     <width>91</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>century gothic</family>
+     <pointsize>-1</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton{
+
+  font-size:15px;
+}</string>
+   </property>
+   <property name="text">
+    <string>记住密码</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>60</width>
+     <height>15</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="forget_button">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>547</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+ font-size:10px;
+background:#00000000;
+
+}
+
+QPushButton{
+  color:black;
+  border-radius:20px;
+  font-size:14px;
+  }
+
+QPushButton:hover{
+  color:red;
+  border-radius:15px;
+  background:#00000000;
+}</string>
+   </property>
+   <property name="text">
+    <string>忘记密码</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exit">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>150</y>
+     <width>31</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QPushButton{
+  color:white;
+  border-radius:20px;
+  font-size:24px;
+  }
+
+QPushButton:hover{
+  font-size:26px;
+}
+
+QPushButton:pressed
+{
+padding-top:9px;/*上边距*/
+
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/exit.ico</normaloff>:/images/exit.ico</iconset>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="forget_button_2">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>550</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+ font-size:10px;
+background:#00000000;
+
+}
+
+QPushButton{
+  color:black;
+  border-radius:20px;
+  font-size:14px;
+  }
+
+QPushButton:hover{
+  color:red;
+  border-radius:15px;
+  background:#00000000;
+}</string>
+   </property>
+   <property name="text">
+    <string>注册</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>300</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">*{background:#00000000;
+color:#214264;
+	
+}</string>
+   </property>
+   <property name="text">
+    <string>LOGIN HERE</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>470</y>
+     <width>271</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">*{color:rgb(85, 170, 255)}</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>          password</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>radioButton</tabstop>
+  <tabstop>forget_button</tabstop>
+  <tabstop>exit</tabstop>
+  <tabstop>forget_button_2</tabstop>
+  <tabstop>toolButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="wire_images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>exit</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>Exit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>568</x>
+     <y>132</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>525</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>Login_Reslute()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>342</x>
+     <y>510</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>86</x>
+     <y>49</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>Exit()</slot>
+  <slot>Login_Reslute()</slot>
+ </slots>
+</ui>

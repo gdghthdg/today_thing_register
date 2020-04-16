@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1286</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SERSON_WINDOWS</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="wire_images.qrc">
+    <normaloff>:/images/main.jpg</normaloff>:/images/main.jpg</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>571</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="dragEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="showGrid">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>90</number>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>25</number>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>37</number>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>10</number>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>物品编码</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>保存情况</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>物品状态</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>操作人员</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>物品位置</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>维护时间</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QComboBox" name="com_Choice">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>119</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox::drop-down {/*右侧按钮*/
+	width: 20px;/*宽度*/
+	background:  rgb(255, 255, 255,30);/*背景颜色*/
+	
+
+
+}</string>
+    </property>
+    <property name="maxVisibleItems">
+     <number>20</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>所有</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>OK</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>NG</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BF</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="com_chioce_comp_or_ser">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>10</y>
+      <width>119</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="maxVisibleItems">
+     <number>20</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>SERSON</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>电脑</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>60</y>
+      <width>651</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTabBar::tab {
+		border: none;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		color: rgb(175, 175, 175);
+		height: 325px;
+		min-width: 85px;
+		margin-right: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
+}
+</string>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::West</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>电脑,SERSON操作</string>
+     </attribute>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>90</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>编号</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>180</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>物品状态</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>90</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>保存情况</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>420</y>
+        <width>93</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>清除</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="com_Address">
+      <property name="geometry">
+       <rect>
+        <x>331</x>
+        <y>130</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="com_Station">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>130</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;物品是好还是坏&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>OK</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>NG</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLineEdit" name="lin_Worker">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>220</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>黃林燦</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>420</y>
+        <width>93</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>确认</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>270</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>操作人员</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>180</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>位置</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="com_thing_status_info">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>40</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;物品是完好，还是某零件损坏，还是其他&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>SERSON</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>电脑</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>完好</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>損壞</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>其他原因</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLineEdit" name="lin_Num">
+      <property name="geometry">
+       <rect>
+        <x>52</x>
+        <y>40</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>270</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>维护时间</string>
+      </property>
+     </widget>
+     <widget class="QDateTimeEdit" name="dat_hint_time">
+      <property name="geometry">
+       <rect>
+        <x>333</x>
+        <y>220</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="tabletTracking">
+       <bool>false</bool>
+      </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="wrapping">
+       <bool>false</bool>
+      </property>
+      <property name="accelerated">
+       <bool>false</bool>
+      </property>
+      <property name="keyboardTracking">
+       <bool>true</bool>
+      </property>
+      <property name="displayFormat">
+       <string>yyyy-M-d hh:mm:ss</string>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>删除</string>
+     </attribute>
+     <widget class="QLineEdit" name="lin_delete">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>100</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>150</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>删除</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>10</y>
+      <width>61</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查找</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="but_return_bind_wire">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">*{background:#00000000;}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="wire_images.qrc">
+      <normaloff>:/images/retutn.ico</normaloff>:/images/retutn.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1286</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>项目</string>
+    </property>
+    <addaction name="action_SERSON"/>
+    <addaction name="action_to_lend"/>
+    <addaction name="action_lend"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_SERSON">
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/count.ico</normaloff>:/images/count.ico</iconset>
+   </property>
+   <property name="text">
+    <string>serson重新统计</string>
+   </property>
+  </action>
+  <action name="action_to_lend">
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/upload.png</normaloff>:/images/upload.png</iconset>
+   </property>
+   <property name="text">
+    <string>導入數據</string>
+   </property>
+  </action>
+  <action name="action_lend">
+   <property name="icon">
+    <iconset resource="wire_images.qrc">
+     <normaloff>:/images/lend.ico</normaloff>:/images/lend.ico</iconset>
+   </property>
+   <property name="text">
+    <string>導出數據</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="wire_images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>tableWidget</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>TEST()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>177</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>42</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Clean_All()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>372</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>delete()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>899</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>813</x>
+     <y>49</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>confire_reslute()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>843</x>
+     <y>536</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>486</x>
+     <y>529</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Clean_All()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1034</x>
+     <y>537</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>487</x>
+     <y>614</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>but_return_bind_wire</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>return_mainwindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>28</x>
+     <y>41</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>67</x>
+     <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lin_Num</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>thing_showinfo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>760</x>
+     <y>154</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>638</x>
+     <y>44</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>TEST()</slot>
+  <slot>confire_reslute()</slot>
+  <slot>Clean_All()</slot>
+  <slot>Set_Table()</slot>
+  <slot>delete()</slot>
+  <slot>return_mainwindow()</slot>
+  <slot>thing_showinfo()</slot>
+ </slots>
+</ui>

@@ -139,7 +139,7 @@ class wire_change_class(wire_change_son):
     def return_mainwindow(self):
         wire_registe_show.close()
         main_window_show.show()
-        main_window_show.center()
+        main_window_show.move(self.x(),self.y())
 
 
 
@@ -230,13 +230,13 @@ class wire_change_class(wire_change_son):
 class Thing_Change_class(Thing_Check_monther.thing_check_class,QMainWindow):
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
 #一个返回函数
     def return_mainwindow(self):
         thing_num_address_show.close()
         main_window_show.show()
-        main_window_show.center()
+        main_window_show.move(self.x(),self.y())
 
     def to_lend(self):
         if main_window_show.but_admin_info_show.text()=='HE':
@@ -250,14 +250,15 @@ class Thing_Change_class(Thing_Check_monther.thing_check_class,QMainWindow):
 class Bind_Wire_son(Bind_Wire_monther.Wirte_wireinfo,QMainWindow):  #
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
 
 
     def Mian_Window_show(self):
         machine_lh_contrast_show.close()
         main_window_show.show()
-        main_window_show.center()
+
+        main_window_show.move(self.x(),self.y())
 
 
     def to_lend(self):
@@ -270,13 +271,13 @@ class Bind_Wire_son(Bind_Wire_monther.Wirte_wireinfo,QMainWindow):  #
 class seek_thing_use_mary(Date_Analyse_monther.Choice_Condition, QMainWindow):
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
 
     def return_mainwindow(self):
         date_analyze_show.close()
         main_window_show.show()
-        main_window_show.center()
+        main_window_show.move(self.x(),self.y())
 
 
 #這是歷史記錄的繼承父類
@@ -284,14 +285,14 @@ class seek_history(history_monther.Thing_History, QMainWindow):
 
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
 
 
     def return_mainwindow(self):
         main_window_show.show()
         history_show.close()
-        main_window_show.center()
+        main_window_show.move(self.x(),self.y())
 
 
 
@@ -299,13 +300,13 @@ class seek_history(history_monther.Thing_History, QMainWindow):
 class wire_lh(wireandmachine_lh_monther.Wire_machine_lh):
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
 
     def return_mainwindow(self):
         thing_lh_contrast_show.close()
         main_window_show.show()
-        main_window_show.center()
+        main_window_show.move(self.x(),self.y())
 
 
     def to_lend(self):
@@ -319,13 +320,13 @@ class wire_lh(wireandmachine_lh_monther.Wire_machine_lh):
 class Serson_Set_Son(SERSON_MONTHER.SET_MACHINE_USE,QMainWindow):
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
 
     def return_mainwindow(self):
         main_window_show.show()
         serson_computer_register_show.close()
-        main_window_show.center()
+        main_window_show.move(self.x(),self.y())
 
 
     def to_lend(self):
@@ -337,7 +338,7 @@ class Serson_Set_Son(SERSON_MONTHER.SET_MACHINE_USE,QMainWindow):
 class set_machine_kitting_class(Set_Machine_monther.kitting_show_class,QMainWindow):
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
     def confire(self):
         try:
@@ -377,7 +378,7 @@ class set_machine_kitting_class(Set_Machine_monther.kitting_show_class,QMainWind
 class set_machine_use_son(Set_Machine_monther.SET_MACHINE_USE,QMainWindow):
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
 
 
@@ -388,7 +389,7 @@ class set_machine_use_son(Set_Machine_monther.SET_MACHINE_USE,QMainWindow):
 
         main_window_show.show()
         set_machine_use_show.close()
-        main_window_show.center()
+        main_window_show.move(self.x(),self.y())
 
     #得试试重载
     def TEST(self, i, j):
@@ -418,13 +419,14 @@ class set_machine_use_son(Set_Machine_monther.SET_MACHINE_USE,QMainWindow):
 class lend_thing_son(lend_registe_monther.lend_registe_son,QMainWindow):
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
 
     def return_mainwindow(self):
         main_window_show.show()
         lend_thing_show.close()
-        main_window_show.center()
+
+        main_window_show.move(lend_thing_show.x(),lend_thing_show.y())
 
 
 
@@ -432,7 +434,7 @@ class lend_thing_son(lend_registe_monther.lend_registe_son,QMainWindow):
 class update_class(Update_Mother.update_son,Windows_Move,QMainWindow):
     def __init__(self):
         super().__init__()
-        #self.center()
+        #self.move(self.x(),self.y())
 
     def Close_Show(self):
         update_show.close()
@@ -479,7 +481,7 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
                 if user_dist[self.lineEdit.text()] == self.lineEdit_2.text():
                     #print('有这个账号')
                     main_window_show.show()
-                    main_window_show.center()
+                    main_window_show.move(self.x(),self.y())
                     admin_register_show.close()
                 else:
                     self.Message_two('账号或密码错误')
@@ -546,7 +548,7 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        #self.center()
+        #self.move(self.x(),self.y())
 
         self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint | QtCore.Qt.WindowCloseButtonHint)
         #这是设置默认为蓝色
@@ -571,6 +573,8 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
 
         self.set_gif(":/images/dou4.gif",self.label_8)
         self.set_gif(":/images/dou3.gif",self.lab_version_gif)
+
+
 
 
         #self.set_system_stock(":/images/77.ico")
@@ -598,7 +602,7 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
 
         if choice_function=="but_thing_resigner":
             wire_registe_show.show()
-            wire_registe_show.center()
+            wire_registe_show.move(self.x(),self.y())
 
             #print('431',wire_registe_show.isHidden())
             if wire_registe_show.isHidden()==False:
@@ -608,36 +612,39 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
         #机种料号绑定
         elif choice_function=="but_wire_machine_bind":
             machine_lh_contrast_show.show()
-            machine_lh_contrast_show.center()
+            #machine_lh_contrast_show.move(self.x(),self.y())
+
+            machine_lh_contrast_show.move(self.x(),self.y())
+            print('123==',machine_lh_contrast_show.geometry())
 
         #serson与computer的登记
         elif choice_function=="but_serson_computer_resigner":
             serson_computer_register_show.show()
-            serson_computer_register_show.center()
+            serson_computer_register_show.move(self.x(),self.y())
         #这是耗损查询
         elif choice_function=="but_lost_seek":
             date_analyze_show.show()
-            date_analyze_show.center()
+            date_analyze_show.move(self.x(),self.y())
         #历史记录查询
         elif choice_function=="but_history":
             history_show.show()
-            history_show.center()
+            history_show.move(self.x(),self.y())
         #物品数量与位置，盘点
         elif choice_function=="but_newthing_registe":
             thing_num_address_show.show()
-            thing_num_address_show.center()
+            thing_num_address_show.move(self.x(),self.y())
         #机种是否使用
         elif choice_function=="but_machine_use":
             set_machine_use_show.show()
-            set_machine_use_show.center()
+            set_machine_use_show.move(self.x(),self.y())
         #借用登记
         elif choice_function=="but_lend_registe":
             lend_thing_show.show()
-            lend_thing_show.center()
+            lend_thing_show.move(self.x(),self.y())
         #物品料号与价格
         elif choice_function=="but_thing_lh":
             thing_lh_contrast_show.show()
-            thing_lh_contrast_show.center()
+            thing_lh_contrast_show.move(self.x(),self.y())
         #tcp的使用
         elif choice_function=="but_tcp_show":
             self.tcp_test()
@@ -660,6 +667,8 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
         #print(num)
         pass
 
+
+    #tcp连接,大概有
     def tcp_server_main(self):
         try:
             #print('tcp有触发')
@@ -761,9 +770,13 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
 
         elif sender.objectName()=='but_admin_register' or sender.objectName()=='but_admin_info_show':
             admin_register_show.show()
-            admin_register_show.center()
+            admin_register_show.move(self.x(),self.y())
             admin_register_show.lineEdit.clear()
             admin_register_show.lineEdit_2.clear()
+
+        elif sender.text()=='server ip':
+            print("gggggggggggg")
+            self.tabWidget.setCurrentIndex(6)
 
 
     #这是得到了所有正在运行的PID号
@@ -856,7 +869,11 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
         except Exception:
             print_exc()
 
-    #这是确认线体更改Ok
+
+        #判断窗口是否打开
+        # wire_registe_show.isWindow()
+
+    #这是体更改Ok
     def Line_Size_Confire(self):
         try:
             sender=self.sender()
@@ -1002,7 +1019,7 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
             print_exc()
 
     def Exit(self):
-        exit()
+        os._exit(0)
 
 
     #下载every_day_work,
@@ -1119,6 +1136,20 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
 
         Common_Table.Seek_table_info(self,sql_order,widget_all)
 
+
+    def closeEvent(self, event):
+        try:
+            sender = self.sender()
+            #print('触发的东西',sender.event())
+            #print(sender.objectName())
+            print(event)
+
+            print('有关闭的动作')
+            #os._exit(0)
+        except Exception:
+            print_exc()
+
+
     # 确认人员账号的显示
     def Clear_All(self):
     #这是人员工号的清除
@@ -1143,12 +1174,16 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
 
 if __name__ == '__main__':
 
+
+    #怎样从主界面得到ip还有password
+
     app = QApplication(argv)
 
     common_function=mainwindow_common_function()
 
-    set_server_ip_admin_password_database('127.0.0.1','sa','123456','management')
+    # print('得到一个数值',Main_Window_class.lin_server_ip.text())
 
+    set_server_ip_admin_password_database('127.0.0.1', 'sa', '123456', 'management')
 
     #这是入库的数量输入界面
     put_in_show=put_in_class()
@@ -1194,9 +1229,9 @@ if __name__ == '__main__':
     write_password_show=write_password_class()
     # mytimeshow= time_show()
     # mytimeshow.show()
+
     # 主界面
     main_window_show = Main_Window_class()
-
 
     #main_window_show.show()
 

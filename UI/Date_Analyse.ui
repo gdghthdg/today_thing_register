@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1286</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>物品耗損查詢</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="wire_images.qrc">
+    <normaloff>:/images/10.jpg</normaloff>:/images/10.jpg</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>50</width>
+    <height>50</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QComboBox" name="com_lines">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>230</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>FT</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SKD</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BMA</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>JI</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>IAS</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>AGIS</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SET</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>360</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>线体</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="com_lines_son">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>300</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="com_thing_class">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>230</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>電源線</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>測試線</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>驅動板</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>FFC</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="com_thing_class_son">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>300</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="maxVisibleItems">
+     <number>20</number>
+    </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>360</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>物体种类</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="but_seek">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>490</y>
+      <width>75</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关闭</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="but_close">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>490</y>
+      <width>75</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查找</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>140</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>结束时间</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>140</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>起始时间</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dat_finally">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>30</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>yyyy-M-d</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dat_start">
+    <property name="geometry">
+     <rect>
+      <x>469</x>
+      <y>31</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>yyyy-M-d</string>
+    </property>
+   </widget>
+   <widget class="QTimeEdit" name="tim_finally">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>90</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>H:mm:ss</string>
+    </property>
+   </widget>
+   <widget class="QTimeEdit" name="tim_start">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>90</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>H:mm:ss</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="but_return">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">*{BACKGROUND:#00000000;}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="wire_images.qrc">
+      <normaloff>:/images/retutn.ico</normaloff>:/images/retutn.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1286</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>功能</string>
+    </property>
+    <addaction name="act_shuhu"/>
+    <addaction name="act_future"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="act_shuhu">
+   <property name="text">
+    <string>耗损查询</string>
+   </property>
+  </action>
+  <action name="act_future">
+   <property name="text">
+    <string>Future</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="wire_images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>but_close</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Matplotlib_New()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>341</x>
+     <y>431</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>266</x>
+     <y>491</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>but_seek</sender>
+   <signal>pressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Close_plot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>529</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>529</x>
+     <y>494</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>but_return</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>return_mainwindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>39</x>
+     <y>44</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>109</x>
+     <y>47</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>Matplotlib_New()</slot>
+  <slot>Close_plot()</slot>
+  <slot>Get_All_LH_Sql()</slot>
+  <slot>return_mainwindow()</slot>
+ </slots>
+</ui>

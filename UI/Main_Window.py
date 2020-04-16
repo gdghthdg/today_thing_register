@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\Administrator\Desktop\20190822\MainWindow.ui'
+# Form implementation generated from reading ui file 'C:\Users\Administrator\Desktop\today_thing_register\UI\MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -1764,7 +1764,6 @@ class Ui_MainWindow(object):
         self.tab_line.cellDoubleClicked['int','int'].connect(MainWindow.Line_Size_Get_Double_Click_Data)
         self.but_warning_flash.clicked.connect(MainWindow.thing_security_ont_enough)
         self.pushButton_16.clicked.connect(MainWindow.Set_Natigation_Window)
-        self.pushButton_20.clicked.connect(MainWindow.Set_Natigation_Window)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

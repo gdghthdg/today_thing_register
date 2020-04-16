@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>run.gif</file>
+    <file>run.jpg</file>
+    <file>black_trigrlue.ico</file>
+    <file>triangle_down_16px_1189852_easyicon.net.ico</file>
+  </qresource>
+</RCC>

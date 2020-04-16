@@ -56,26 +56,26 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
     def Reset_Serson_Num(self):
         try:
-            sql_order="select count(*) from Serson_Table where Station='OK' and Serson_Name like 'LS-%' and Address='備品房'"
+            sql_order="select count(*) from Serson_Table where Station='OK' and Serson_Name like 'LS-%' and Address='測試備品房'"
             Serson_NUM_OK=Execute_Sql_Get_Date(sql_order)
             #print(Serson_NUM_OK)
             sql_order="update NC_KUCUN_SUM set QTY_OK='%s' where WUPIN_NAME='%s'"%(Serson_NUM_OK[0][0],'Light Sensor')
             Execute_Sql_No_Get_Date(sql_order)
 
-            sql_order = "select count(*) from Serson_Table where Station='NG' and Address='備品房' and Serson_Name like 'LS-%'"
+            sql_order = "select count(*) from Serson_Table where Station='NG' and Address='測試備品房' and Serson_Name like 'LS-%'"
             Serson_NUM_NG = Execute_Sql_Get_Date(sql_order)
             #print(Serson_NUM_NG)
             sql_order = "update NC_KUCUN_SUM set QTY_NG='%s' where WUPIN_NAME='%s'" % (Serson_NUM_NG[0][0], 'Light Sensor')
             Execute_Sql_No_Get_Date(sql_order)
 
-            sql_order = "select count(*) from Serson_Table where Station='OK' and Address!='備品房' and Serson_Name like 'LS-%'"
+            sql_order = "select count(*) from Serson_Table where Station='OK' and Address!='測試備品房' and Serson_Name like 'LS-%'"
             Serson_NUM_ONLINE=Execute_Sql_Get_Date(sql_order)
 
             sql_order = "update NC_KUCUN_SUM set QTY_ONLINE='%s' where WUPIN_NAME='%s'" % (
             Serson_NUM_ONLINE[0][0], 'Light Sensor')
             Execute_Sql_No_Get_Date(sql_order)
 
-            #print('73',Serson_NUM_OK)
+            print('73',Serson_NUM_OK)
 
 
         except Exception:
@@ -195,7 +195,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
             self.com_Station.clear()
             self.com_Address.clear()
             self.com_Station.addItems(['','OK','NG','BF'])
-            #self.com_Address.addItems(['','產線','備品房'])
+            #self.com_Address.addItems(['','產線','測試備品房'])
             self.com_Address.addItems(Read_load_info())
 
             self.lin_Num.setText('')

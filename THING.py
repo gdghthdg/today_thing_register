@@ -25,7 +25,7 @@ old_input_window=[]   #储存旧数据的东西
 Set_machine = []    # 储存得到的机种
 Get_pow_ff_dri = []
 Set_size = []
-#  #print('当前时间是%s'%time_now)
+#  print('当前时间是%s'%time_now)
 time_now=datetime.now()
 Time_now=str(time_now)[:10]
 
@@ -42,7 +42,7 @@ class put_in_class(put_in.Ui_MainWindow, QMainWindow):
 
             put_in_show.close()
 
-            #print('3r34r34r34')
+            print('3r34r34r34')
 
 
         except Exception:
@@ -110,7 +110,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
     # def changeEvent(self, event):
     #     # 顶层窗口激活状态改变
     #     if event.type() == QEvent.ActivationChange:
-    #         #print('我是什么东村')
+    #         print('我是什么东村')
     #         self.showNormal()
 
 
@@ -141,8 +141,8 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             Thing_Barcode=Determine_wire(self.lin_Thing_barcode.text())
             sql_order = "select LH from NC_KUCUN_LH where TXM='%s'"%Thing_Barcode
             GET_RESLUTE=Execute_Sql_Get_Date(sql_order)
-            #print('173=%s'%My_Machine_Wire)
-            #print('177=%s'%GET_RESLUTE)
+            print('173=%s'%My_Machine_Wire)
+            print('177=%s'%GET_RESLUTE)
 
             if GET_RESLUTE[0][len(GET_RESLUTE[0])-1] in My_Machine_Wire:
                 IS_Complte=True
@@ -164,11 +164,11 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         # 得到物品的名称，条形码，全称
         sql_order1="select TYPEOF,TXM,WUPIN_NAME FROM NC_KUCUN_SUM where TXM='%s'" %Thing_name
         old_Thing=Execute_Sql_Get_Date(sql_order1)
-        #print('old_Thing=%s'%old_Thing)
+        print('old_Thing=%s'%old_Thing)
         # 得到换取人员的信息
         sql_order2= "select USER_NAME,USER_BUMEN,PHONE_ADDR from MFG_USER where USER_ID='%s'" %(self.lin_worker_num.text())
         old_worker=Execute_Sql_Get_Date(sql_order2)
-        #print('old_worker=%s' %old_worker)
+        print('old_worker=%s' %old_worker)
         input_windows.append(old_Thing[0][0])
         input_windows.append(old_Thing[0][1])
         input_windows.append(old_Thing[0][2])
@@ -201,17 +201,17 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         new_input_window.append(self.com_Thing_class.currentText())
         new_input_window.append(self.com_machine.currentText())
         new_input_window.append(self.com_systems.currentText().split('(')[0])
-        #print('170=%s'%Get_pow_ff_dri)
+        print('170=%s'%Get_pow_ff_dri)
 
         # Thing_AllName=self.wire_show_test.toPlainText().split("\n    ")
-        # #print('216=%s'%Thing_AllName[len(Thing_AllName)-1])
+        # print('216=%s'%Thing_AllName[len(Thing_AllName)-1])
         # new_input_window.append(Thing_AllName[len(Thing_AllName)-1])
 
         new_input_window.append(self.lab_Thing_truename.text())
 
         #new_input_window.append(Get_pow_ff_dri[0])
         #new_input_window.append(self.wire_show_test.toPlainText().split("\n    ")[len(self.wire_show_test.toPlainText().split("\n    "))-1])
-        #print('148=%s'%self.wire_show_test.toPlainText().split("\n    "))
+        print('148=%s'%self.wire_show_test.toPlainText().split("\n    "))
         new_input_window.append(self.lin_quantiy.text())
         new_input_window.append(self.com_operation.currentText())
         new_input_window.append(self.com_method.currentText())
@@ -229,7 +229,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         #  修改
         sql_order = "select QTY_OK,QTY_NG,QTY_BF,QTY_ONLINE from NC_KUCUN_SUM where TXM='%s'" % (
             Determine_wire(self.lin_Thing_barcode.text()))
-        #print('160=%s' % sql_order)
+        print('160=%s' % sql_order)
 
         get_reslut = Execute_Sql_Get_Date(sql_order)
         return get_reslut
@@ -238,7 +238,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 # ok的ng的BF的数量有一些是空白的，所以把空白置0
     def ok_ng_bf_online_num(self,ok_num,ng_num,bf_num,on_num):
         get_ok_ng_online = self.Get_kucun_num()
-        #print('167=%s'%get_ok_ng_online)
+        print('167=%s'%get_ok_ng_online)
         ok=get_ok_ng_online[0][0]
         if ok=='':
             ok=0
@@ -255,7 +255,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         ng_kucun = int(ng) + ng_num
         bf_kucun = int(bf) + bf_num
         online_kucun = int(online) + on_num
-        #print('ok=%d ng=%d bf=%d online=%d' %(ok_kucun,ng_kucun,bf_kucun,online_kucun))
+        print('ok=%d ng=%d bf=%d online=%d' %(ok_kucun,ng_kucun,bf_kucun,online_kucun))
         # 把得到的数量进行加减，然后录入数据库
         sql_order1 = "update NC_KUCUN_SUM set QTY_OK=%s,QTY_NG=%s,QTY_BF=%s,QTY_ONLINE=%s where TXM='%s'" % (
             str(ok_kucun), str(ng_kucun), str(bf_kucun), str(online_kucun), Determine_wire(self.lin_Thing_barcode.text()))
@@ -263,8 +263,8 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
 
 #  根据人员选择的（入库，出库）把得到的物品数量进行加减
-    def Set_think_num(self,thing_operat):
-        thing_num=int(self.lin_quantiy.text())
+    def Set_think_num(self,thing_operat,thing_num):
+        print("操作方式,操作数量",thing_operat,thing_num)
         if thing_operat == '出庫':
             if self.com_method.currentText()=='報廢出庫':
                 self.ok_ng_bf_online_num(0, -(thing_num), thing_num, 0)
@@ -291,7 +291,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         s=0
 
         i=self.Insert_Oldserver_Data()
-        #print('262',i)
+        print('262',i)
         put_in_have_num=[]
         put_in_have_num.append(put_in_show.lin_ok.text())
         put_in_have_num.append(put_in_show.lin_ng.text())
@@ -309,18 +309,18 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 Execute_Sql_No_Get_Date(sql_order)
 
                 if s==0:
-                    #print('触发一次')
+                    print('触发一次')
                     self.ok_ng_bf_online_num(int(put_in_have_num[0]), 0, 0, -(int(put_in_have_num[0])))
                 if s==1:
-                    #print('触发二次')
+                    print('触发二次')
                     self.ok_ng_bf_online_num(0, int(put_in_have_num[1]), 0, -(int(put_in_have_num[1])))
 
                 if s==2:
                     self.ok_ng_bf_online_num(int(put_in_have_num[2]), 0, 0, 0)
-                    #print('触发三次')
+                    print('触发三次')
 
                 if s==3:
-                    #print('触发四次')
+                    print('触发四次')
                     self.ok_ng_bf_online_num(int(put_in_have_num[3]), -(int(put_in_have_num[3])), 0, 0)
             s+=1
 
@@ -347,8 +347,8 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             #curruct_text.append(self.lin_Thing_barcode.text())
             curruct_text.append(self.lab_wire_name.text())
 
-            ##print('167=%s' % self.wire_show_test.toPlainText().split("\n    ")[2])
-            #print(type(self.wire_show_test.toPlainText()))
+            #print('167=%s' % self.wire_show_test.toPlainText().split("\n    ")[2])
+            print(type(self.wire_show_test.toPlainText()))
 
             if self.com_Thing_class.currentText() == '其他（机种不用选）' or self.com_Thing_class.currentText()=='' and self.com_operation.currentText()=='入庫':
 
@@ -366,36 +366,36 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 curruct_text.append(self.com_systems.currentText().split('(')[0])
                 #curruct_text.append(self.wire_show_test.toPlainText().split("\n    ")[len(self.wire_show_test.toPlainText().split("\n    "))-1])
 
-            #print('236=%s'%curruct_text)
+            print('236=%s'%curruct_text)
         except Exception:
             print_exc()
             #print_exc()
 
         try:
-            #print('182=%s'%curruct_text)
+            print('182=%s'%curruct_text)
             #self.Message_two(str(curruct_text))
             if '' not in curruct_text and '此系统没有这种線材' not in curruct_text:
-        # 这是确认密码
+                # 这是确认密码
                 if self.lin_admin_password.text()=='admin123':
-        #检查物品数量是否足够
+                    #检查物品数量是否足够
                     if self.Check_Thing_Is_Zero()==True:
-        # 确认是否录入,还有检查物品是否有库存
+                        # 确认是否录入,还有检查物品是否有库存
                         if self.Message_two('确认录入') == QMessageBox.Yes:
-        # 分别是存入有机种的新数据还是旧数据
-        # 这是没有选择机种的历史记录
+                        # 分别是存入有机种的新数据还是旧数据
+                        # 这是没有选择机种的历史记录
 
 
-        #这是判断数据是要在这存入新数据库中
+                            #这是判断数据是要在这存入新数据库中
                             if self.com_Thing_class.currentText() not in  ['其他（机种不用选）','','SERSON'] \
                                     and (self.com_method.currentText() == '加量需求' or self.com_operation.currentText() == 'NG品更換') \
                                     and self.com_lines.currentText()[:2] in ['SK', 'FT', 'JI', 'BM', 'IA', 'AG','BI','CT','IN','FQ','OQ','RP']:
 
 
 
-        ##print('旧数据是',old_input_window.append(curruct_text))
-        # 修改
+                                #print('旧数据是',old_input_window.append(curruct_text))
+                                # 修改
                                 j = self.Insert_New_Data()
-                                #print('195=%s' % j)
+                                print('195=%s' % j)
                                 sql_order="insert into New_History(worker_choice_wire,TYPEOF,machine_name,systems,wire_name,wire_barcode,inout_num,INOUT," \
                                           "STATUS,worker_name,worker_num,worker_phone,STATION,comments,CDT) values" \
                                           "('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" \
@@ -408,9 +408,12 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
                             i=[]
                             i=self.Insert_Oldserver_Data()
-                            #print('309=%s'%i)
+                            print('309=%s'%i)
 
-        #这是一个SERSON的数量设置为1
+
+
+
+                            #这是一个SERSON的数量设置为1
                             if self.lin_Thing_barcode.text()[:2] in ['LS','UP']:
                                 i[3]=1
 
@@ -419,26 +422,32 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                                           %(i[0],i[1],i[2],i[3],i[4],i[5],Get_Now_Time(),i[6],i[7],i[8],i[9],i[10],i[11],self.lin_OK_Serson.text(),self.lin_Ng_Serson.text())
                                 Execute_Sql_No_Get_Date(sql_order)
 
-        # 把得到的物品进行加减，存入数据库中，库存
-                                thing_number = self.com_operation.currentText()
-                                if self.com_Thing_class.currentText()=='SERSON':
-                                    thing_number =1
+                                # 把得到的物品进行加减，存入数据库中，库存
+                                thing_operation = self.com_operation.currentText()
+                                thing_num = int(self.lin_quantiy.text())
 
-                                self.Set_think_num(thing_number)
+
+                                if self.com_Thing_class.currentText()=='SERSON':
+                                    thing_num =1
+
+                                self.Set_think_num(thing_operation,thing_num)
+
+                                print("serson触发",thing_operation)
 
                             else:
                                 self.set_thing_num_storang()
 
-        #  把物品的變化情況進行記錄
-        #  這是得到物品的數量
+
+                            #  把物品的變化情況進行記錄
+                            #  這是得到物品的數量
                             sql_order = "select QTY_OK,QTY_NG,QTY_BF,QTY_ONLINE from NC_KUCUN_SUM where WUPIN_NAME='%s'" % (
                                 self.lab_Thing_truename.text())
                             Get_Thing_Online_Num = Execute_Sql_Get_Date(sql_order)
-                            #print('348=%s' % sql_order)
-                            #print(Get_Thing_Online_Num)
+                            print('348=%s' % sql_order)
+                            print(Get_Thing_Online_Num)
 
                             sql_order = "insert into History_Thing_Num(Thing_Name,QTY_OK,QTY_NG,QTY_BF,QTY_ONLINE,People_Method,People_input_num,CDT) values('%s','%s','%s','%s','%s','%s','%s','%s')" % (self.lab_Thing_truename.text(), Get_Thing_Online_Num[0][0], Get_Thing_Online_Num[0][1], Get_Thing_Online_Num[0][2], Get_Thing_Online_Num[0][3],self.com_method.currentText(),self.lin_quantiy.text(),Get_Now_Time())
-                            #print('352=%s' % sql_order)
+                            print('352=%s' % sql_order)
                             Execute_Sql_No_Get_Date(sql_order)
 
 
@@ -447,10 +456,10 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                             else:
                                 round_num=0
 
-    #Serson状态更改
+                            #Serson状态更改
                             self.Serson_Statius_Change()
 
-    # 这是SERSON数量的多次使用，登记完之后输入的信息不会消失
+                            # 这是SERSON数量的多次使用，登记完之后输入的信息不会消失
                             if self.lin_Thing_barcode.text()[:3] in ['LS-'] and int(self.lin_quantiy.text()) >0:
                                 round_num -= 1
                                 self.lin_quantiy.setText(str(round_num))
@@ -463,8 +472,8 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                                     self.Clear_all()
                                     self.Clear_Thinginfo()
 
-                            #print('录入成功')
-                            #print(i)
+                            print('录入成功')
+                            print(i)
                     else:
                         self.Message_two('物品数量不足')
                 else:
@@ -479,7 +488,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
         except Exception:
             print_exc()
-            #print('录入数据%s'%Exception)
+            print('录入数据%s'%Exception)
         curruct_text.clear()
 
 #  人员进行操作选择时，如入库就把'OK退料','NG退料','新品入庫','維修入庫（OK）'在另一个显示出来
@@ -493,7 +502,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             #put_in_show.show()
             #put_in_show.setWindowModality(Qt.ApplicationModal)
 
-            #print('这入库的有触发')
+            print('这入库的有触发')
             #self.com_method.addItems(['OK退料','NG退料','新品入庫','維修入庫（OK）'])
 
             self.com_method.addItems(['入庫'])
@@ -521,7 +530,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
     def Serson_Statius_Change(self):
         # 把serson信息进行更改位置与NG与OK
         if self.lin_Thing_barcode.text()[:3] in ['LS-']:
-            #print('378')
+            print('378')
             try:
                 # 把得到的SERSON名字放在Get_SERSON_allName中
                 Get_Serson_AllName = []
@@ -529,7 +538,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 get_reslute = Execute_Sql_Get_Date(sql_order)
                 for i in get_reslute:
                     Get_Serson_AllName.append(i[0])
-                #print('410=%s' % Get_Serson_AllName)
+                print('410=%s' % Get_Serson_AllName)
 
                 # 把NG的serson出库，位置从产线变成備品房
                 if self.com_method.currentText() in ['NG品更換']:
@@ -537,7 +546,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                         sql_order = "update Serson_Table set Station='%s',Address='%s',Work_Name='%s' where Serson_Name='%s'" % (
                             'NG', '備品房', self.lab_worker_name.text(), self.lin_Ng_Serson.text())
                         Execute_Sql_No_Get_Date(sql_order)
-                        #print('376=%s' % sql_order)
+                        print('376=%s' % sql_order)
 
                     else:
                         sql_order = "insert into Serson_Table(Serson_Name,Station,Work_Name,Address) values('%s','%s','%s','%s')" % (
@@ -555,7 +564,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                             self.lin_OK_Serson.text(), 'OK', self.lab_worker_name.text(), self.com_lines.currentText())
                         Execute_Sql_No_Get_Date(sql_order)
 
-                    #print('383=%s' % sql_order)
+                    print('383=%s' % sql_order)
 
 
                 elif self.com_method.currentText() in ['OK退料']:
@@ -584,14 +593,14 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
 
                 elif self.com_method.currentText() in ['加量需求']:
-                    #print('加量')
-                    #print(self.lin_OK_Serson)
-                    #print(Get_Serson_AllName)
+                    print('加量')
+                    print(self.lin_OK_Serson)
+                    print(Get_Serson_AllName)
                     if self.lin_OK_Serson.text() in Get_Serson_AllName:
-                        #print('加量')
+                        print('加量')
                         sql_order = "update Serson_Table set Station='%s',Address='%s',Work_Name='%s' where Serson_Name='%s'" % (
                             'OK', self.com_lines.currentText(), self.lab_worker_name.text(), self.lin_OK_Serson.text())
-                        #print('423=%s' % sql_order)
+                        print('423=%s' % sql_order)
                         Execute_Sql_No_Get_Date(sql_order)
 
             except Exception:
@@ -606,16 +615,16 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             self.com_machine.clear()
             #@sql_order = "select MACHINES from WIRE_TEST where %s!='/' and MACHINES!='/' and SIZE='%s'" % (thing_class,self.com_size.currentText())
             sql_order = "select distinct MACHINES from MACHINE_LHTEST1 where %s!='/' and %s!='X'  and MACHINES!='/' and MACHINES!='X' and SIZE='%s' and MACHINE_STATIUS='True'" % (sql_class, sql_class,self.com_size.currentText())
-            #print('228=%s'%sql_order)
+            print('228=%s'%sql_order)
             get_reslut = Execute_Sql_Get_Date(sql_order)
             get_reslut = set(get_reslut)
-            #print('get_reslut%s' % get_reslut)
+            print('get_reslut%s' % get_reslut)
             Set_machine.append('')
             for i in get_reslut:#
                 Set_machine.append(i[0])
             Set_machines=set(Set_machine)
-            #print('Set_machine%s' % Set_machine)
-            #print('Set_machine=%d'%len(Set_machine))
+            print('Set_machine%s' % Set_machine)
+            print('Set_machine=%d'%len(Set_machine))
             Set_machines = sorted(Set_machines)
             if len(Set_machines) == 1 and Set_machines[0] == '':
                 Set_machines.append('没有对应机种')
@@ -625,26 +634,26 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
     def Line_Wire_Change_Maching_one(self,line_term,sql_line):
         try:
             if self.com_lines.currentText()[:2] == line_term and self.com_size.currentText()!='':
-                #print('242=%s'%line_term)
+                print('242=%s'%line_term)
                 self.com_machine.clear()
                 #@sql_order = "select MACHINES from WIRE_TEST where %s!='/' and MACHINES!='/' and SIZE='%s'" % (sql_line,self.com_size.currentText())
                 sql_order = "select MACHINES from MACHINE_LHTEST1 where %s!='/' and %s!='X' and MACHINES!='/' and MACHINES!='X' and SIZE='%s' and MACHINE_STATIUS='True'" % (sql_line,sql_line, self.com_size.currentText())
 
 
-                #print("243=%s"%sql_order)
+                print("243=%s"%sql_order)
                 get_reslute = Execute_Sql_Get_Date(sql_order)
                 Set_machine.append('')
                 for i in get_reslute:
                     Set_machine.append(i[0])
                 Set_machines=set(Set_machine)
                 Set_machines = sorted(Set_machines)
-                #print('247=%d'%len(Set_machines))
-                #print('401=%s'%Set_machines)
+                print('247=%d'%len(Set_machines))
+                print('401=%s'%Set_machines)
 
                 if len(Set_machines)==1 and Set_machines[0]=='':
                     Set_machines.append('没有对应机种')
 
-                #print('404=%s' % Set_machines)
+                print('404=%s' % Set_machines)
                 self.com_machine.addItems(Set_machines)
 
         except Exception:
@@ -671,7 +680,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 self.Line_Wire_Change_Maching_one('IA','IAS')
                 self.Line_Wire_Change_Maching_one('SK','JI_OR_SKD')
                 self.Line_Wire_Change_Maching_one('AG', 'AGIS')
-                #print('421yyyyyy')
+                print('421yyyyyy')
         except Exception:
             print_exc()
 
@@ -692,7 +701,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 #self.lin_Thing_barcode.setEnabled(False)
 
                 self.Fra_mac_sys.setEnabled(True)
-                #print('317set=%s'%self.com_Thing_class.currentText())
+                print('317set=%s'%self.com_Thing_class.currentText())
 
                 #self.com_machine.addItems(list)
                 self.com_systems.addItems(['','无电脑','Chroma(白电脑)', 'JC(黑色电脑)', 'PCBase','整機'])
@@ -804,7 +813,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             put_in_show.lin_new.clear()
 
 
-            #print('清除执行成功')
+            print('清除执行成功')
         except Exception:
             print_exc()
 
@@ -851,7 +860,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
             machine=self.com_machine.currentText()
             systems=self.com_systems.currentText().split('(')[0]
-            #print('machine=%s,thing_class=%s,line=%s,systems=%s'%(machine,thing_class,line,systems))
+            print('machine=%s,thing_class=%s,line=%s,systems=%s'%(machine,thing_class,line,systems))
             if thing_class=='測試線' and self.com_machine.currentText()!='':
                 #@sql_order="select %s from WIRE_TEST where MACHINES='%s' and SYSTEMS='%s'" %(line,machine,systems)
                 #if self.com_lines.currentText()[:2] in ['FT','SK','AG','IA'] and self.com_systems.currentText().split('(')[0] in ['','Chroma', 'JC', 'PCBase']:
@@ -864,9 +873,9 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 else:
                     sql_order = "select distinct %s from MACHINE_LHTEST1 where MACHINES='%s' and SYSTEMS='%s'" % (line, machine, systems)
 
-                #print('344=%s'%sql_order)
+                print('344=%s'%sql_order)
                 Get_reslut=Execute_Sql_Get_Date(sql_order)
-                #print('329=%s'%Get_reslut)
+                print('329=%s'%Get_reslut)
 
                 if  len(Get_reslut)==0:
                     self.wire_show_test.setPlainText('\n机种:' + self.com_machine.currentText() + '\n系统:' + self.com_systems.currentText() + '\n物品:' + 'None')
@@ -878,15 +887,15 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                     LH_ALL = ['*','*','*','*','*']
                     for i in range(len(Get_reslut)):
                         LH_ALL[i]=Get_reslut[i][0]
-                    #print('612=%s'%LH_ALL)
+                    print('612=%s'%LH_ALL)
                     try:
                         sql_order = "select WUPIN_NAME from NC_KUCUN_LH where LH='%s' or LH='%s' or LH='%s' or LH='%s' or LH='%s'" %(LH_ALL[0],LH_ALL[1],LH_ALL[2],LH_ALL[3],LH_ALL[4])
 
 
-                        #print('557=%s' % sql_order)
+                        print('557=%s' % sql_order)
 
                         relute = Execute_Sql_Get_Date(sql_order)
-                        #print('620=%s'%relute)
+                        print('620=%s'%relute)
 
                         CU_SHI_NAME_ALL = ['*', '*', '*', '*', '*','*', '*', '*', '*', '*']
                         for i in range(len(relute)):
@@ -898,14 +907,14 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                         CU_SHI_NAME_ALL[4])
 
                         Thing_Address = Execute_Sql_Get_Date(sql_order)
-                        #print('642=%s'%sql_order)
-                        #print('641=%s' % Thing_Address)
+                        print('642=%s'%sql_order)
+                        print('641=%s' % Thing_Address)
 
                     except Exception:
                         print_exc()
 
                     Get_pow_ff_dri.append(Get_reslut[0][0])
-                    #print('481=%s'%Get_pow_ff_dri)
+                    print('481=%s'%Get_pow_ff_dri)
                     self.wire_show_test.setPlainText('\n机种:' +self.com_machine.currentText()+'\n系统:' +self.com_systems.currentText()+'\n物品:'+ replace_str(relute,["[('","',)]"])+'\n位置:'+str(Thing_Address))
 
                     for xy in Get_reslut:
@@ -913,7 +922,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
         except Exception:
             print_exc()
-            #print('498=%s'%Exception)
+            print('498=%s'%Exception)
 
 
     def seek_dri_pow_ff(self):
@@ -944,8 +953,8 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
                 Get_reslut=Execute_Sql_Get_Date(sql_order)
 
-                #print('628=%s'%sql_order)
-                #print('343Get_reslut=%s'%Get_reslut)
+                print('628=%s'%sql_order)
+                print('343Get_reslut=%s'%Get_reslut)
 
                 POW_FFC_LH_ALL = ['*', '*', '*', '*', '*','*', '*', '*', '*', '*','*','*','*','*','*']
                 for i in range(len(Get_reslut)):
@@ -954,14 +963,14 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 try:
                     if len(Get_reslut)!=0:
                         sql_order = "select WUPIN_NAME from NC_KUCUN_LH where LH='%s' or LH='%s' or LH='%s' or LH='%s' or LH='%s'" % (POW_FFC_LH_ALL[0],POW_FFC_LH_ALL[1],POW_FFC_LH_ALL[2],POW_FFC_LH_ALL[3],POW_FFC_LH_ALL[4])
-                        #print('618=%s'%sql_order)
+                        print('618=%s'%sql_order)
                         relute = Execute_Sql_Get_Date(sql_order)
-                        #print('599%s' % relute)
+                        print('599%s' % relute)
 
                         b = str(relute).replace('[', '').replace(']', '').replace("'", '').replace(',', '')
-                        #print(b)
+                        print(b)
                         c = b.replace(") (", ")\n(")
-                        #print(c)
+                        print(c)
 
 
                         #  得到選擇出的物品的位置
@@ -972,9 +981,9 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                         sql_order="select Location_OK,Location_NG from NC_KUCUN_SUM where WUPIN_NAME='%s' or WUPIN_NAME='%s' or WUPIN_NAME='%s' or WUPIN_NAME='%s' or WUPIN_NAME='%s'"%(POW_FFC_NAME_ALL[0],POW_FFC_NAME_ALL[1],POW_FFC_NAME_ALL[2],POW_FFC_NAME_ALL[3],POW_FFC_NAME_ALL[4])
                         Thing_Address=Execute_Sql_Get_Date(sql_order)
 
-                        #print('695=%s'%Thing_Address)
+                        print('695=%s'%Thing_Address)
                         e = str(Thing_Address).replace('[', '').replace(']', '').replace("'", '').replace(',', '')
-                        #print(e)
+                        print(e)
                         f = e.replace(") (", ")\n(")
 
 
@@ -982,7 +991,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                     print_exc()
 
                 if len(Get_reslut)==0 or POW_FFC_LH_ALL in ['/','X','']:
-                    #print('629')
+                    print('629')
                     self.wire_show_test.setPlainText('\n机种:' + self.com_machine.currentText() + '\n系统:' + self.com_systems.currentText() + '\n物品:' + 'None')
 
                 elif thing_class=='DRIVER,DRIVER_MARCH':
@@ -999,30 +1008,30 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                     #self.wire_show_test.setPlainText('\n    '+self.com_machine.currentText()+'\n    '+self.com_systems.currentText().split('(')[0]+Get_reslut[0][1]+'\n    '+Get_reslut[0][0])
                     for xy in Get_reslut:#
                         My_Machine_Wire.append(xy[0])
-                    #print('639=%s'%My_Machine_Wire)
+                    print('639=%s'%My_Machine_Wire)
 
                 # 这是电源线,FFC，测试线的显示函数
                 else:
-                    #print('622')
+                    print('622')
                     Get_pow_ff_dri.append(Get_reslut[0][0])
                     self.wire_show_test.setPlainText('\n机种:'+self.com_machine.currentText()+'\n系统:'+ self.com_systems.currentText()+'\n物品:'+str(c)+'\n位置:'+str(f))
                     for xy in Get_reslut:#
                         My_Machine_Wire.append(xy[0])
                     #My_Machine_Wire.append(Get_reslut[0][len(Get_reslut[0])-1])
-                    #print('646=%s'%My_Machine_Wire)
+                    print('646=%s'%My_Machine_Wire)
 
         except Exception:
             print_exc()
 
     def Worker_Showinfo(self):
         Worker_Num = self.lin_worker_num.text()
-        #print('WOKER_NUM=%s'%Worker_Num)
+        print('WOKER_NUM=%s'%Worker_Num)
         #curruct_text.append(Worker_Num)
         sql_order = "select USER_NAME,USER_BUMEN,PHONE_ADDR from MFG_USER where USER_ID='%s'" % (Worker_Num)
-        #print(sql_order)
+        print(sql_order)
         try:
             get_Thing_reslut = Execute_Sql_Get_Date(sql_order)
-            #print('get_Thing_reslut=$s'%get_Thing_reslut)
+            print('get_Thing_reslut=$s'%get_Thing_reslut)
 
             self.lab_worker_name.setText(get_Thing_reslut[0][0])
             self.lab_frim.setText(get_Thing_reslut[0][1])
@@ -1035,7 +1044,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 self.Message_one('账号没有权限')
             self.lin_worker_num.setText('')
             self.Clear_Workerinfo()
-            #print('Woker_showinfo=%s'%e)
+            print('Woker_showinfo=%s'%e)
 
     #这是一个物品的信息的显示
     def Thing_Showinfo(self):
@@ -1044,15 +1053,15 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         if self.lin_Thing_barcode.text()!='':
             self.Serson_close()
             Thing_Barcode = self.lin_Thing_barcode.text()
-            #print('547=%s'%Thing_Barcode)
+            print('547=%s'%Thing_Barcode)
             Thing_Barcode=Determine_wire(Thing_Barcode)
-            #print('549=%s'%Thing_Barcode)
+            print('549=%s'%Thing_Barcode)
             sql_order = "select TYPEOF,WUPIN_NAME,QTY_OK,Location_OK,Location_NG from NC_KUCUN_SUM where TXM='%s'" %(Thing_Barcode)
-            #print('551=%s'%sql_order)
+            print('551=%s'%sql_order)
 
             try:
                 getworker_reslut=Execute_Sql_Get_Date(sql_order)
-                #print(getworker_reslut)
+                print(getworker_reslut)
                 # 设置查找的物品中的信息
                 self.lab_wire_name.setText(getworker_reslut[0][0])
                 self.lab_Thing_truename.setText(getworker_reslut[0][1])
@@ -1079,12 +1088,12 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             self.seek_dri_pow_ff()
 
         #  設置焦點
-        #print(self.lin_Thing_barcode.text())
+        print(self.lin_Thing_barcode.text())
         if self.lin_Thing_barcode.text()!='':
             self.lin_admin_password.setFocus()
         else:
             self.lin_Thing_barcode.setFocus()
-            #print('773')
+            print('773')
 
         if self.lin_Thing_barcode.text()[:2] in ['LS', 'UP']:
             self.lin_OK_Serson.setFocus()
@@ -1113,7 +1122,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             self.lab_ngserson.setStyleSheet("QLabel {border-radius: 10px;font-size: 20px;color:black;}")
             # self.Fra_mac_sys.close()
             self.lin_Ng_Serson.setEnabled(True)
-            #print('serson=true')
+            print('serson=true')
             #self.lin_comments.setEnabled(True)
 
 
@@ -1127,15 +1136,17 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         self.lab_ngserson.setStyleSheet("QLabel{color:#00000000;}")
         # self.Fra_mac_sys.show()
         self.lin_Ng_Serson.setEnabled(False)
-        ##print('serson=false')
+        #print('serson=false')
 
+
+    #serson_ok的框回车后触发,判断serson是否有库存
     def Serson_is_use(self):
         try:
-            sql_order="select Station from Serson_Table where Serson_name='%s'"%self.lin_OK_Serson.text()
+            sql_order="select Station,Address from Serson_Table where Serson_name='%s'"%self.lin_OK_Serson.text()
             serson_use_statius=Execute_Sql_Get_Date(sql_order)
-            #print('937=%s'%serson_use_statius)
+            print('937=%s'%serson_use_statius)
 
-            if serson_use_statius[0][0]=='NG':
+            if serson_use_statius[0][0]=='NG' or serson_use_statius[0][0]!='測試備品房':
                 self.Message_one('NG品不准出库或者此SERSON不存在')
                 self.lin_OK_Serson.setText('')
                 self.lin_OK_Serson.setFocus()
@@ -1154,9 +1165,9 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
         try:
             all_list=[]
-            #print('1019')
+            print('1019')
             all_list.append(self.wire_show_test.toPlainText())
-            #print(all_list)
+            print(all_list)
 
             h=str(self.wire_show_test.toPlainText())
             for i in ["[('","',)]","(",")","\n"]:
@@ -1165,10 +1176,10 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             regex = r'物品:([\s\S]*)位置:'
             matches = re.findall(regex, h)
             for match in matches:
-                #print('match',match)
+                print('match',match)
                 pass
 
-            #print(h)
+            print(h)
 
             sql_order="select TXM from NC_KUCUN_LH where WUPIN_NAME='%s'"%match
             get_reslute=Execute_Sql_Get_Date(sql_order)
@@ -1192,7 +1203,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         self.lin_Thing_barcode.setFocus()
 
     def return_mainwindow(self):
-        #print('this is thing_registe return window')
+        print('this is thing_registe return window')
         pass
 
     #检查物品输入数量
@@ -1209,10 +1220,10 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 result=False
                 sql_order="select QTY_OK from NC_KUCUN_SUM where WUPIN_NAME='%s'"%self.lab_Thing_truename.text()
                 get_result=Execute_Sql_Get_Date(sql_order)
-                #print(sql_order)
-                #print('1044=',get_result)
+                print(sql_order)
+                print('1044=',get_result)
                 if int(get_result[0][0])-int(self.lin_quantiy.text())>0:
-                    #print('物品库存还有大于零的数')
+                    print('物品库存还有大于零的数')
                     result=True
                 return result
             else:
@@ -1222,7 +1233,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
 
     def rewrite(self):
-        #print('旧数据',old_input_window)
+        print('旧数据',old_input_window)
         pass
     # #显示人物一个月领用物品
     # def User_Thing_History(self):
@@ -1232,7 +1243,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
     #         get_reslute=Execute_Sql_Get_Date(sql_order)
     #
     #         self.table_user_history.setRowCount(20)
-    #         #print('1041=',get_reslute)
+    #         print('1041=',get_reslute)
     #         for j in range(len(get_reslute)):
     #             for i in range(4):
     #                 data = QTableWidgetItem(str(get_reslute[j][i]))  # 转换后可插入表格
@@ -1244,7 +1255,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
     # def changeEvent(self, event):
     #     try:
     #         if self.isMaximized():
-    #             #print('这是变大了的')
+    #             print('这是变大了的')
     #             self.lin_quantiy.setGeometry(QtCore.QRect(10, 70, 141, 41))
     #             #self.setCentralWidget(self.lin_quantiy)
     #             #self.setCentralWidget(self.frame_main)
