@@ -1720,9 +1720,9 @@ class Ui_MainWindow(object):
         self.action_5.setObjectName("action_5")
 
         self.retranslateUi(MainWindow)
-        self.toolBox_navigation.setCurrentIndex(4)
+        self.toolBox_navigation.setCurrentIndex(6)
         self.toolBox_navigation.layout().setSpacing(7)
-        self.tabWidget.setCurrentIndex(6)
+        self.tabWidget.setCurrentIndex(5)
         self.starck_warning.setCurrentIndex(1)
         self.stackedWidget.setCurrentIndex(0)
         self.but_eng2_1.clicked.connect(MainWindow.Set_Natigation_Window)

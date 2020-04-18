@@ -205,6 +205,7 @@ class Ui_Form(object):
         self.label.setGeometry(QtCore.QRect(350, 300, 151, 31))
         self.label.setStyleSheet("*{background:#00000000;\n"
 "color:#214264;\n"
+"    \n"
 "}")
         self.label.setObjectName("label")
         self.lineEdit_2 = QtWidgets.QLineEdit(Form)

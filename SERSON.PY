@@ -144,6 +144,7 @@ class Ui_MainWindow(object):
         self.com_thing_status_info.addItem("")
         self.lin_Num = QtWidgets.QLineEdit(self.tab)
         self.lin_Num.setGeometry(QtCore.QRect(52, 40, 181, 41))
+        self.lin_Num.setClearButtonEnabled(True)
         self.lin_Num.setObjectName("lin_Num")
         self.label_6 = QtWidgets.QLabel(self.tab)
         self.label_6.setGeometry(QtCore.QRect(410, 270, 61, 20))

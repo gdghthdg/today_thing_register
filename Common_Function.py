@@ -197,12 +197,12 @@ def set_server_ip_admin_password_database(ip,admin,password,database):
     server_database=database
 
 
-# server_ip='127.0.0.1:7100'
-# server_database='management'
+server_ip='127.0.0.1:7100'
+server_database='management'
 
 
-server_ip='172.17.130.106'
-server_database='xueshengxinxi'
+# server_ip='172.17.130.106'
+# server_database='xueshengxinxi'
 
 server_admin='sa'
 server_password='123456'

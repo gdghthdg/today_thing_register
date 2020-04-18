@@ -226,6 +226,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
             self.lin_Worker.setText("黃林燦")
             self.tableWidget.setHorizontalHeaderLabels(['物品编码','保存情况','物品状态','操作人员','物品位置','维护时间'])
             self.Set_Table()
+            self.dat_hint_time.setDateTime(QDateTime.currentDateTime())
 
         except Exception:
             print_exc()
