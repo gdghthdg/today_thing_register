@@ -197,10 +197,17 @@ def set_server_ip_admin_password_database(ip,admin,password,database):
     server_database=database
 
 
-server_ip='127.0.0.1'
+# server_ip='127.0.0.1:7100'
+# server_database='management'
+
+
+server_ip='172.17.130.106'
+server_database='xueshengxinxi'
+
 server_admin='sa'
 server_password='123456'
-server_database='management'
+
+
 
 
 
@@ -281,6 +288,7 @@ def Execute_Sql_Get_Date(sql_order):
 
     except Exception:
         print_exc(file=open('D://LOG//%s.txt'%Time_now,'a'))
+
 
 #  从本地读取机种SIZE
 def Read_loadsize_info():

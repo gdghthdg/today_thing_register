@@ -31,6 +31,8 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
             self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
             self.tableWidget.setWordWrap(True)
 
+            self.dat_hint_time.setDateTime(QDateTime.currentDateTime())
+
 
         except Exception:
             print_exc()
@@ -42,7 +44,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
         try:
             delete_sql_order="delete Serson_TableTEST"
             file_name=self.to_lend_function(delete_sql_order,'Serson_TableTEST',5)
-            #print('38',file_name)
+            print('38',file_name)
 
         except Exception:
             print_exc()
@@ -50,7 +52,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
     def lend(self):
         save_file_name=self.lend_function(self.tableWidget)
-        #print('44',save_file_name)
+        print('44',save_file_name)
 
 
 
@@ -58,13 +60,13 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
         try:
             sql_order="select count(*) from Serson_Table where Station='OK' and Serson_Name like 'LS-%' and Address='測試備品房'"
             Serson_NUM_OK=Execute_Sql_Get_Date(sql_order)
-            #print(Serson_NUM_OK)
+            print(Serson_NUM_OK)
             sql_order="update NC_KUCUN_SUM set QTY_OK='%s' where WUPIN_NAME='%s'"%(Serson_NUM_OK[0][0],'Light Sensor')
             Execute_Sql_No_Get_Date(sql_order)
 
             sql_order = "select count(*) from Serson_Table where Station='NG' and Address='測試備品房' and Serson_Name like 'LS-%'"
             Serson_NUM_NG = Execute_Sql_Get_Date(sql_order)
-            #print(Serson_NUM_NG)
+            print(Serson_NUM_NG)
             sql_order = "update NC_KUCUN_SUM set QTY_NG='%s' where WUPIN_NAME='%s'" % (Serson_NUM_NG[0][0], 'Light Sensor')
             Execute_Sql_No_Get_Date(sql_order)
 
@@ -97,17 +99,25 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
                 else:
                     sql_order="select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Station='%s' and Serson_Name like '%s' order by Serson_Name"%(self.com_Choice.currentText(),'LS-%')
 
-            else:
-                #print('this is computer')
+            elif self.com_chioce_comp_or_ser.currentText()=='电脑':
+                print('this is computer')
                 if self.com_Choice.currentText()=='所有' :
                     sql_order = "select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Serson_Name not like 'LS-%' order by Serson_Name"
                 else:
                     sql_order="select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Station='%s' and Serson_Name not like '%s' order by Serson_Name"%(self.com_Choice.currentText(),'LS-%')
 
-            get_reslute=Execute_Sql_Get_Date(sql_order)
-            #print('23=%s'%sql_order)
+            else:
+                sql_order = "select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table order by Serson_Name"
 
-            #print('22=%s'%get_reslute)
+
+
+
+
+            get_reslute=Execute_Sql_Get_Date(sql_order)
+
+            print('23=%s'%sql_order)
+
+            print('22=%s'%get_reslute)
 
             #get_reslute=list(set(get_reslute))  #去重
 
@@ -119,12 +129,12 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
                 Address_All.append(xy[3])
 
 
-            #print('ALL_Machine=%s'%All_Machine_Dist)
-            #print(Worker_All)
+            print('ALL_Machine=%s'%All_Machine_Dist)
+            print(Worker_All)
 
             All_Machine_Dist_Keys=list(All_Machine_Dist.keys())
 
-            #print('33=%s'%All_Machine_Dist_Keys)
+            print('33=%s'%All_Machine_Dist_Keys)
 
             self.tableWidget.setRowCount(len(get_reslute))
             self.tableWidget.setColumnCount(6)
@@ -139,9 +149,9 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
     # 从table得到数值，并且设置在界面的lineedit
     def TEST(self,i,j):
         try:
-            #print(i,j)
-            #print('test')
-            #print(self.tableWidget.item(i, j).text())
+            print(i,j)
+            print('test')
+            print(self.tableWidget.item(i, j).text())
             #self.com_Station.setText(self.tableWidget.item(i, 0).text())
             self.lin_Num.setText(self.tableWidget.item(i, 0).text())
 
@@ -149,8 +159,10 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
             self.com_Station.setEditText(self.tableWidget.item(i,2).text())
             self.lin_Worker.setText(self.tableWidget.item(i,3).text())
             self.com_Address.setEditText(self.tableWidget.item(i,4).text())
+            
 
-            self.dat_hint_time.setDateTime(self.tableWidget.item(i,5).text())
+            self.dat_hint_time.setDateTime(QDateTime.currentDateTime())
+
 
             self.lin_delete.setText(self.tableWidget.item(i, 0).text())
 
@@ -161,18 +173,23 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
     #确定一个结果的确认
     def confire_reslute(self):
         try:
-            #print('62=%s'%All_Machine)
+            print('62=%s',self.lin_Num.text() in All_Machine)
             if self.lin_Num.text() in All_Machine:
+
                 if self.Message_two('确认要更改？') == QMessageBox.Yes:
-                    sql_order="update Serson_Table set Thing_Statius='%s',Station='%s',Address='%s',Work_Name='%s',CDT='%s' where Serson_Name='%s'"%(self.com_thing_status_info.currentText(),self.com_Station.currentText(),self.com_Address.currentText(),get_uaer_name(self.lin_Worker.text(),self.lin_Worker.text()),Get_Now_Time(),self.lin_Num.text())
+                    sql_order="update Serson_Table set Thing_Statius='%s',Station='%s',Address='%s',Work_Name='%s',CDT='%s' where Serson_Name='%s'"%(self.com_thing_status_info.currentText(),self.com_Station.currentText(),self.com_Address.currentText(),get_uaer_name(self.lin_Worker.text(),self.lin_Worker.text()),Get_Now_Time_have_zero(),self.lin_Num.text())
             else:
                 if self.Message_two('是否添加此物品')==QMessageBox.Yes:
-                    sql_order = "insert into Serson_Table(Thing_Statius,Serson_Name,Station,Work_Name,Address,CDT) values('%s','%s','%s','%s','%s','%s')"%(self.com_chioce_comp_or_ser.currentText(),self.lin_Num.text(),self.com_Station.currentText(),self.lin_Worker.text(),self.com_Address.currentText(),Get_Now_Time())
+                    sql_order = "insert into Serson_Table(Thing_Statius,Serson_Name,Station,Work_Name,Address,CDT) values('%s','%s','%s','%s','%s','%s')"%(self.com_chioce_comp_or_ser.currentText(),self.lin_Num.text(),self.com_Station.currentText(),self.lin_Worker.text(),self.com_Address.currentText(),Get_Now_Time_have_zero())
 
-            if self.com_Station.currentText()=='OK':
-                sql_order="update Serson_Table set CDT='%s' where Serson_Name='%s'"%(Get_Now_Time(),self.lin_Num.text())
+            print("sql_order=", sql_order)
 
-            #print(sql_order)
+            # #就是卡在这了
+            # if self.com_Station.currentText()=='OK' and self.lin_Num.text() in All_Machine:
+            #     sql_order="update Serson_Table set CDT='%s' where Serson_Name='%s'"%(Get_Now_Time(),self.lin_Num.text())
+
+
+            print("sql_order==",sql_order)
             Execute_Sql_No_Get_Date(sql_order)
             self.Clean_All()
 
@@ -216,7 +233,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
     #一个返回函数
     def return_mainwindow(self):
-        #print('this is a serson return main window')
+        print('this is a serson return main window')
         pass
 
     #設置人員選擇回車顯示物品盤點,查找的函數
@@ -224,7 +241,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
         try:
             sql_order = "select Serson_Name,Thing_Statius,Station,Address,Work_Name from Serson_Table WHERE Serson_Name='%s' " % self.lin_Num.text()
             get_reslute = Execute_Sql_Get_Date(sql_order)
-            #print('115=%s' % get_reslute)
+            print('115=%s' % get_reslute)
 
             #self.lin_Num.setText(get_reslute[0][0])
             self.com_Station.setEditText(get_reslute[0][2])
@@ -232,6 +249,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
             self.com_thing_status_info.setEditText(get_reslute[0][1])
             self.com_Address.setEditText(get_reslute[0][3])
+
             #self.com_thing_status_info.setEditText(get_resuit)
 
             self.table_jump_address(self.tableWidget,self.lin_Num.text())

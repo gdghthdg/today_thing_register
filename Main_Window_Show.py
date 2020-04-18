@@ -1183,7 +1183,10 @@ if __name__ == '__main__':
 
     # print('得到一个数值',Main_Window_class.lin_server_ip.text())
 
-    set_server_ip_admin_password_database('127.0.0.1', 'sa', '123456', 'management')
+
+    #set_server_ip_admin_password_database('127.0.0.1', 'sa', '123456', 'management')
+
+
 
     #这是入库的数量输入界面
     put_in_show=put_in_class()
