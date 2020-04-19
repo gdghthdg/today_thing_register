@@ -57,7 +57,7 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QLabel{\n"
-"  color:white;\n"
+"  color:rgb(9, 9, 9);\n"
 "  font-size:24px;\n"
 "}\n"
 "\n"

@@ -1,6 +1,8 @@
 from PyQt5.QtCore import QEvent
 import history_monther
 import psutil
+
+
 import random_question_register
 import threading
 import Bind_Wire_monther
@@ -453,7 +455,7 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
             admin_register_show.close()
         else:
             #print("exit login")
-            exit()
+            os._exit(0)
 
 
     #这是登录的界面的,输入不同的账号,得到不一样的选择
@@ -462,7 +464,9 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
             user_dist={}
             sql_order = "select user_id,password from nc_user"
             get_result=Execute_Sql_Get_Date(sql_order)
-            #print('365',get_result)
+            print('365',get_result)
+
+            #从sql得到的东西有很多的空格
             for user in get_result:
                 user_id=str(user[0]).replace(' ','')
                 password=str(user[1]).replace(' ','')
@@ -471,7 +475,7 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
 
                 user_dist[user_id]=password
 
-            #print(user_dist)
+            print(user_dist)
 
             #print(self.lineEdit.text() in list(user_dist.keys()))
 
@@ -488,23 +492,21 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
 
 
             #没有输入账号也可以自己进行登录
-            elif self.lineEdit.text() == '':
+            elif self.lineEdit.text() == '123':
 
                 get_num,get_sum=random_question_register.random_produce_funcation()
-                #print("得到的数字",get_num,get_sum)
+                print("得到的数字",get_num,get_sum)
 
                 QMessageBox.question(self, 'dhdfh', 'title', QMessageBox.Yes)
 
                 main_window_show.show()
                 admin_register_show.close()
 
-
             #一个自己的账号HE
             elif self.lineEdit.text()=='HE':
                 main_window_show.but_admin_info_show.setText('HE')
                 admin_register_show.close()
                 self.Message_one('登录成功')
-
 
             #这是一个俄罗斯方块
             elif self.lineEdit.text()=='HJWZL':
@@ -523,8 +525,6 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
             elif serson_computer_register_show.isHidden() == False:
                 serson_computer_register_show.to_lend()
 
-
-
             elif machine_lh_contrast_show.isHidden()==False:
                 machine_lh_contrast_show.to_lend()
 
@@ -539,9 +539,11 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
                 self.lineEdit.setText('')
                 self.lineEdit_2.setText('')
 
-
         except Exception:
             print_exc()
+
+
+
 
 #这是主界面的导航继承的类
 class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
@@ -566,7 +568,10 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
         # self.Monitor_Process()
 
         #这是更新功能显示的
-        self.Download_File()
+        t_dowload_file=Thread(target=self.Download_File)
+        t_dowload_file.start()
+
+        # self.Download_File()
 
         self.Show_Hanf_Year_No_Use_Thing()
         self.thing_security_ont_enough()
@@ -607,7 +612,8 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
             #print('431',wire_registe_show.isHidden())
             if wire_registe_show.isHidden()==False:
 
-                self.tcp_test()
+                #self.tcp_test()
+                pass
 
         #机种料号绑定
         elif choice_function=="but_wire_machine_bind":
@@ -621,33 +627,42 @@ class Main_Window_class(Ui_MainWindow,Farther,QMainWindow):
         elif choice_function=="but_serson_computer_resigner":
             serson_computer_register_show.show()
             serson_computer_register_show.move(self.x(),self.y())
+
         #这是耗损查询
         elif choice_function=="but_lost_seek":
             date_analyze_show.show()
             date_analyze_show.move(self.x(),self.y())
+
         #历史记录查询
         elif choice_function=="but_history":
             history_show.show()
             history_show.move(self.x(),self.y())
+
         #物品数量与位置，盘点
         elif choice_function=="but_newthing_registe":
             thing_num_address_show.show()
             thing_num_address_show.move(self.x(),self.y())
+
         #机种是否使用
         elif choice_function=="but_machine_use":
             set_machine_use_show.show()
             set_machine_use_show.move(self.x(),self.y())
+
         #借用登记
         elif choice_function=="but_lend_registe":
             lend_thing_show.show()
             lend_thing_show.move(self.x(),self.y())
+
         #物品料号与价格
         elif choice_function=="but_thing_lh":
             thing_lh_contrast_show.show()
             thing_lh_contrast_show.move(self.x(),self.y())
+
         #tcp的使用
         elif choice_function=="but_tcp_show":
-            self.tcp_test()
+           # self.tcp_test()
+            pass
+
         #更新界面
         elif choice_function=="but_check_update":
             update_show.raise_()

@@ -642,7 +642,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             Set_machine.clear()
             self.com_machine.clear()
             #@sql_order = "select MACHINES from WIRE_TEST where %s!='/' and MACHINES!='/' and SIZE='%s'" % (thing_class,self.com_size.currentText())
-            sql_order = "select distinct MACHINES from MACHINE_LHTEST1 where %s!='/' and %s!='X'  and MACHINES!='/' and MACHINES!='X' and SIZE='%s' and MACHINE_STATIUS='True'" % (sql_class, sql_class,self.com_size.currentText())
+            sql_order = "select distinct MACHINES from MACHINE_LH where %s!='/' and %s!='X'  and MACHINES!='/' and MACHINES!='X' and SIZE='%s' and MACHINE_STATIUS='True'" % (sql_class, sql_class,self.com_size.currentText())
             print('228=%s'%sql_order)
             get_reslut = Execute_Sql_Get_Date(sql_order)
             get_reslut = set(get_reslut)
@@ -665,7 +665,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 print('242=%s'%line_term)
                 self.com_machine.clear()
                 #@sql_order = "select MACHINES from WIRE_TEST where %s!='/' and MACHINES!='/' and SIZE='%s'" % (sql_line,self.com_size.currentText())
-                sql_order = "select MACHINES from MACHINE_LHTEST1 where %s!='/' and %s!='X' and MACHINES!='/' and MACHINES!='X' and SIZE='%s' and MACHINE_STATIUS='True'" % (sql_line,sql_line, self.com_size.currentText())
+                sql_order = "select MACHINES from MACHINE_LH where %s!='/' and %s!='X' and MACHINES!='/' and MACHINES!='X' and SIZE='%s' and MACHINE_STATIUS='True'" % (sql_line,sql_line, self.com_size.currentText())
 
 
                 print("243=%s"%sql_order)
@@ -896,10 +896,10 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
 
                 if self.com_lines.currentText()[:2] in ['CT','BI'] and self.com_systems.currentText().split('(')[0]=='无电脑':
-                    sql_order = "select distinct %s from MACHINE_LHTEST1 where MACHINES='%s' and %s!='X'" % (line, machine, self.com_lines.currentText())
+                    sql_order = "select distinct %s from MACHINE_LH where MACHINES='%s' and %s!='X'" % (line, machine, self.com_lines.currentText())
                       #人员选择得到的线材料号，
                 else:
-                    sql_order = "select distinct %s from MACHINE_LHTEST1 where MACHINES='%s' and SYSTEMS='%s'" % (line, machine, systems)
+                    sql_order = "select distinct %s from MACHINE_LH where MACHINES='%s' and SYSTEMS='%s'" % (line, machine, systems)
 
                 print('344=%s'%sql_order)
                 Get_reslut=Execute_Sql_Get_Date(sql_order)
@@ -973,11 +973,11 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 #@sql_order="select %s from WIRE_TEST where MACHINES='%s' and SYSTEMS='%s'" %(thing_class,machine,systems)
                 #  判斷線體在BMA，或在BI中，
                 if self.com_lines.currentText()[:2] in ['BM','BI','CT'] and self.com_systems.currentText().split('(')[0]=='无电脑':
-                    sql_order = "select %s from MACHINE_LHTEST1 where MACHINES='%s' and %s!='X'" % (
+                    sql_order = "select %s from MACHINE_LH where MACHINES='%s' and %s!='X'" % (
                     thing_class, machine, thing_class.split(',')[0])
 
                 else:
-                    sql_order = "select distinct %s from MACHINE_LHTEST1 where MACHINES='%s' and SYSTEMS='%s'" % (thing_class, machine, systems)
+                    sql_order = "select distinct %s from MACHINE_LH where MACHINES='%s' and SYSTEMS='%s'" % (thing_class, machine, systems)
 
                 Get_reslut=Execute_Sql_Get_Date(sql_order)
 
@@ -1188,6 +1188,8 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                         self.Message_one('NG品不准出库或者此物品不存在或已在线上')
                         self.lin_OK_Serson.setText('')
                         self.lin_OK_Serson.setFocus()
+                    else:
+                        self.lin_Ng_Serson.setFocus()
                 else:
                     if self.com_operation.currentText() in ['NG品更換']:
                         self.lin_Ng_Serson.setFocus()
@@ -1221,6 +1223,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
             regex = r'物品:([\s\S]*)位置:'
             matches = re.findall(regex, h)
+
             for match in matches:
                 print('match',match)
                 pass

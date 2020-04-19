@@ -116,7 +116,7 @@ mouse_event class
 from traceback import print_exc
 import re
 import socket
-
+from threading import Thread
 from pymssql import connect
 import decimal
 import xlwt
@@ -197,12 +197,12 @@ def set_server_ip_admin_password_database(ip,admin,password,database):
     server_database=database
 
 
-server_ip='127.0.0.1:7100'
-server_database='management'
+# server_ip='127.0.0.1:443'
+# server_database='management'
 
 
-# server_ip='172.17.130.106'
-# server_database='xueshengxinxi'
+server_ip='172.17.130.106'
+server_database='xueshengxinxi'
 
 server_admin='sa'
 server_password='123456'
@@ -728,9 +728,17 @@ class Farther(QMainWindow):
     # tablewidget:控件的名稱
     # text:要尋找的數據
     def table_jump_address(self, tablewidget, text):
-        items = tablewidget.findItems(text, Qt.MatchExactly)
-        item = items[0]
-        # 选中单元格
+        try:
+            text=text.upper()
+            items = tablewidget.findItems(text, Qt.MatchExactly)
+            item = items[0]
+
+        except Exception:
+            print_exc()
+            text=text.lower()
+            items = tablewidget.findItems(text, Qt.MatchExactly)
+            item = items[0]
+            # 选中单元格
 
         # print("test:",text)
 
@@ -741,6 +749,8 @@ class Farther(QMainWindow):
         row = item.row()
         # 通过鼠标滚轮定位，快速定位到第十一行
         tablewidget.verticalScrollBar().setSliderPosition(row - 8)
+
+
 
 
 #这是窗口移动

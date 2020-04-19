@@ -14,7 +14,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
         try:
             super().__init__()
             self.setupUi(self)
-            self.Set_Table()
+            self.Set_Table('Serson_Name')
             self.action_SERSON.triggered.connect(self.Reset_Serson_Num)
             self.action_to_lend.triggered.connect(self.to_lend)
             self.action_lend.triggered.connect(self.lend)
@@ -30,8 +30,13 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
             self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
             self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
             self.tableWidget.setWordWrap(True)
-
             self.dat_hint_time.setDateTime(QDateTime.currentDateTime())
+
+
+            #tablewidget表格点击事件
+            self.tableWidget.verticalHeader().sectionClicked.connect(self.VerSectionClicked)  # 表头单击信号
+            self.tableWidget.horizontalHeader().sectionClicked.connect(self.HorSectionClicked)  # 表头单击信号
+
 
 
         except Exception:
@@ -39,6 +44,10 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
         #self.lin_machine_use.setMaxLength(4)#
 
         #self.lin_machine_use.setValidator(testing_machine('True|False'))
+
+
+
+
 
     def to_lend(self):
         try:
@@ -85,7 +94,20 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
 
 
-    def Set_Table(self):#
+    def VerSectionClicked(self, index):
+        self.Set_Table('CDT DESC')
+        print('行',index)
+
+    def HorSectionClicked(self, index):
+        if index==0:
+            self.Set_Table('Serson_Name DESC')
+            print('列',index)
+        elif index==5:
+            self.Set_Table('CDT DESC')
+
+
+    #设置serson查询结果按照什么样的结果排序seek_sort
+    def Set_Table(self,seek_sork):#
         All_Machine.clear()
         All_Machine_Dist.clear()
         Worker_All.clear()
@@ -95,19 +117,19 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
         try:
             if  self.com_chioce_comp_or_ser.currentText()=='SERSON':
                 if self.com_Choice.currentText()=='所有' :
-                    sql_order = "select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Serson_Name like 'LS-%' order by Serson_Name"
+                    sql_order = "select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Serson_Name like '%s' order by %s"%('LS-%',seek_sork)
                 else:
-                    sql_order="select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Station='%s' and Serson_Name like '%s' order by Serson_Name"%(self.com_Choice.currentText(),'LS-%')
+                    sql_order="select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Station='%s' and Serson_Name like '%s' order by %s"%(self.com_Choice.currentText(),'LS-%',seek_sork)
 
             elif self.com_chioce_comp_or_ser.currentText()=='电脑':
                 print('this is computer')
                 if self.com_Choice.currentText()=='所有' :
-                    sql_order = "select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Serson_Name not like 'LS-%' order by Serson_Name"
+                    sql_order = "select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Serson_Name not like '%s' order by %s"%('LS-%',seek_sork)
                 else:
-                    sql_order="select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Station='%s' and Serson_Name not like '%s' order by Serson_Name"%(self.com_Choice.currentText(),'LS-%')
+                    sql_order="select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table where Station='%s' and Serson_Name not like '%s' order by %s"%(self.com_Choice.currentText(),'LS-%',seek_sork)
 
             else:
-                sql_order = "select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table order by Serson_Name"
+                sql_order = "select Serson_Name,Thing_Statius,Station,Work_Name,Address,CDT from Serson_Table order by %s"%seek_sork
 
 
 
@@ -145,6 +167,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
                     self.tableWidget.setItem(j, i, data)
         except Exception:
             print_exc()
+
 
     # 从table得到数值，并且设置在界面的lineedit
     def TEST(self,i,j):
@@ -202,7 +225,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
     def delete(self):
         sql_order = "delete from Serson_Table where Serson_Name='%s'"%self.lin_delete.text()
         Execute_Sql_No_Get_Date(sql_order)
-        self.Set_Table()
+        self.Set_Table('Serson_Name')
 
 
     #清除所有的东西,这是一个测试东西
@@ -225,7 +248,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
             self.lin_Worker.setText("黃林燦")
             self.tableWidget.setHorizontalHeaderLabels(['物品编码','保存情况','物品状态','操作人员','物品位置','维护时间'])
-            self.Set_Table()
+            self.Set_Table('Serson_Name')
             self.dat_hint_time.setDateTime(QDateTime.currentDateTime())
 
         except Exception:

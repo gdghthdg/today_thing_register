@@ -15,6 +15,7 @@ class Login_class(Ui_Form,Farther,Windows_Move,QMainWindow):
         self.lineEdit.setFocus()
 
         self.set_gif(':/images/dou5.gif',self.lab_background)
+        #self.set_gif(':/images/yunye.gif', self.lab_background)
 
         # my_list = ['1','2','3']
         # my_str,ok = QInputDialog.getItem(self,"下拉框",'提示',my_list)

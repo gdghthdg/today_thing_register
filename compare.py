@@ -1,4 +1,5 @@
 import os
+import copy_move
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\wire_ui.py C:\Users\Administrator\Desktop\20190822\wire_ui.ui')
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\Thing_Check.py C:\Users\Administrator\Desktop\20190822\Thing_Check.ui')
 os.system(r'pyrcc5 -o C:\Users\Administrator\Desktop\20190822\wire_images_rc.py C:\Users\Administrator\Desktop\20190822\wire_images.qrc')
@@ -17,8 +18,8 @@ os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\center_test.py C:\
 # os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\Update.py C:\Users\Administrator\Desktop\20190822\Update.ui')
 # os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\install.py C:\Users\Administrator\Desktop\20190822\install.ui')
 # os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\Admin_Resigner.py C:\Users\Administrator\Desktop\20190822\Admin_Resigner.ui')
-# os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\Login.py C:\Users\Administrator\Desktop\20190822\LOGIN.ui')
-# os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\put_in.py C:\Users\Administrator\Desktop\20190822\put_in.ui')
+os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\Login.py C:\Users\Administrator\Desktop\20190822\LOGIN.ui')
+os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\put_in.py C:\Users\Administrator\Desktop\20190822\put_in.ui')
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\write_password.py C:\Users\Administrator\Desktop\20190822\write_password.ui')
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\gif.py C:\Users\Administrator\Desktop\20190822\gif.ui')
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\sound.py C:\Users\Administrator\Desktop\20190822\sound.ui')
@@ -28,6 +29,13 @@ os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\sound.py C:\Users\
 
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\set_address_red.py C:\Users\Administrator\Desktop\20190822\set_address_red.ui')
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\set_shortcut.py C:\Users\Administrator\Desktop\20190822\set_shortcut.ui')
+
+
+#一个移动的脚本
+copy_move.run_copy()
+
+
+print("操作完成")
 #一个改名字的的方法,得到在某地的文件的大小
 # os.rename("D:\\hblcmftp\\FD-flicker\\Main_Window_Show.down" ,"D:\\hblcmftp\\FD-flicker\\Main_Window_Show.exe")
 # while True:
