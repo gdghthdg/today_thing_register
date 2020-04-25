@@ -47,8 +47,6 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
 
 
-
-
     def to_lend(self):
         try:
             delete_sql_order="delete Serson_TableTEST"
@@ -95,13 +93,16 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
 
     def VerSectionClicked(self, index):
-        self.Set_Table('CDT DESC')
+        #self.Set_Table('CDT DESC')
         print('行',index)
 
     def HorSectionClicked(self, index):
         if index==0:
-            self.Set_Table('Serson_Name DESC')
+            self.Set_Table('Serson_Name')
             print('列',index)
+        elif index==4:
+            self.Set_Table('Address desc')
+
         elif index==5:
             self.Set_Table('CDT DESC')
 
@@ -197,7 +198,7 @@ class SET_MACHINE_USE(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
     def confire_reslute(self):
         try:
             print('62=%s',self.lin_Num.text() in All_Machine)
-            if self.lin_Num.text() in All_Machine:
+            if self.lin_Num.text().upper() in All_Machine:
 
                 if self.Message_two('确认要更改？') == QMessageBox.Yes:
                     sql_order="update Serson_Table set Thing_Statius='%s',Station='%s',Address='%s',Work_Name='%s',CDT='%s' where Serson_Name='%s'"%(self.com_thing_status_info.currentText(),self.com_Station.currentText(),self.com_Address.currentText(),get_uaer_name(self.lin_Worker.text(),self.lin_Worker.text()),Get_Now_Time_have_zero(),self.lin_Num.text())

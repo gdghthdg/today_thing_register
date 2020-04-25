@@ -215,11 +215,11 @@ class Wirte_wireinfo(Ui_MainWindow, Farther, No_Main_Window,QMainWindow):
     def Set_Table(self):
         # All_Machine.clear()
         machine_all.clear()
-
+        print('20r1=%s')
         sql_order="select MACHINES,SIZE,SYSTEMS,JI_OR_SKD,MONDEL,BI,CTAG,BMA,IAS,AGIS,FFC,INV_POWER_WIRE,DRIVER,DRIVER_MARCH,POWER_WIRE from MACHINE_LH where MACHINE_STATIUS='True' order by SIZE"
         get_reslute=Execute_Sql_Get_Date(sql_order)
         #get_reslute=sorted(list(set(get_reslute)))
-        #print('201=%s'%get_reslute)
+        print('201=%s'%get_reslute)
         self.tab_machine_lh.setRowCount(len(get_reslute))  #设置table的列数
 
         for i in range(15):

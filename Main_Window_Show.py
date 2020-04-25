@@ -1,8 +1,6 @@
 from PyQt5.QtCore import QEvent
 import history_monther
 import psutil
-
-
 import random_question_register
 import threading
 import Bind_Wire_monther
@@ -17,6 +15,7 @@ import write_password
 from THING import wire_change_son
 import lend_registe_monther
 import Login_monther
+import database_set
 #import set_machine_kitting
 #from Tcp_Server import *
 from Common_Function import *
@@ -447,6 +446,13 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
     def __init__(self):
         super().__init__()
 
+        # try:
+        #     end_program('Main_Window_Show.exe')
+        # except:
+        #     print_exc(file=open('D://LOG//%s.txt'%Time_now,'a'))
+        #     print_exc()
+
+
 
     #一个退出的按钮的函数
     def Exit(self):
@@ -502,6 +508,7 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
                 main_window_show.show()
                 admin_register_show.close()
 
+
             #一个自己的账号HE
             elif self.lineEdit.text()=='HE':
                 main_window_show.but_admin_info_show.setText('HE')
@@ -518,6 +525,13 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
             elif self.lineEdit.text() == '24680':
                 main_window_show.show()
                 admin_register_show.close()
+
+            elif self.lineEdit.text()=="888":
+                database_set_show.show()
+                admin_register_show.close()
+
+                #print("窗口是false,ture",admin_register_show.w)
+
 
             #这些是检测导入数据是要输入密码()
             #也就是在有导入功能界面下,输入密码的界面才可以进行显示
@@ -541,6 +555,66 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
 
         except Exception:
             print_exc()
+
+
+
+
+class DataBase_Set_inherit(database_set.Ui_Form,Farther,QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        self.set_ip_database()
+
+
+    def set_ip_database(self):
+        try:
+            # 执行SQL，而不要数据(sql指令),选择了最新的
+            sql_order="select ip,admin,password,databases from admin_password WHERE CDT=(select MAX(CDT) from admin_password)"
+
+            Connect = connect("127.0.0.1:5900", "sa", "642807512", "management", login_timeout=10)  # 建立连接
+            cursor = Connect.cursor()
+            cursor.execute(sql_order)
+            get_sql_data = cursor.fetchall()
+
+            Connect.commit()
+            Connect.close()
+            cursor.close()
+
+            print("得到",get_sql_data)
+
+            self.lin_server_ip.setText(get_sql_data[0][0])
+            self.lin_server_admin.setText(get_sql_data[0][1])
+            self.lin_server_password.setText(get_sql_data[0][2])
+            self.lin_server_database.setText(get_sql_data[0][3])
+
+        except Exception:
+            print_exc()
+
+    #这是怎样判定一个东西在数据库中有两个相反的,互为相反,一个正,一个反
+    #应该了上传保存,如果可以连接的话,大概就行,不行的话,就要设置一下,
+    #那这个应该要保存在输入的数据库中
+
+
+    def change_database(self):
+        # sql_order="update admin_password set use_yes_no='0' where use_yes_no='1'"
+        # Execute_Sql(sql_order)
+        #
+        # sql_order = "update admin_password set use_yes_no='1' where use_yes_no='0'"
+        # Execute_Sql(sql_order)
+        try:
+            Connect = connect(self.lin_server_ip.text(), self.lin_server_admin.text(),self.lin_server_password.text(), self.lin_server_database.text(), login_timeout=3)
+
+        except Exception:
+            print_exc()
+            self.Message_one("无法连接数据库")
+            return
+
+        self.Message_one("可以连接")
+        sql_order="insert into admin_password(use_yes_no,ip,databases,admin,password,CDT) values ('%s','%s','%s','%s','%s','%s')"\
+                  %('1',self.lin_server_ip.text(),self.lin_server_database.text(),self.lin_server_admin.text(),self.lin_server_password.text(),Get_Now_Time())
+
+        Execute_Sql(sql_order)
 
 
 
@@ -1199,8 +1273,19 @@ if __name__ == '__main__':
     # print('得到一个数值',Main_Window_class.lin_server_ip.text())
 
 
-    #set_server_ip_admin_password_database('127.0.0.1', 'sa', '123456', 'management')
+    #数据库的IP
+    database_set_show=DataBase_Set_inherit()
 
+    set_server_ip_admin_password_database(database_set_show.lin_server_ip.text(),
+                                          database_set_show.lin_server_admin.text(),
+                                          database_set_show.lin_server_password.text(),
+                                          database_set_show.lin_server_database.text())
+
+
+    print("得到的",database_set_show.lin_server_ip.text(),
+          database_set_show.lin_server_admin.text(),
+          database_set_show.lin_server_password.text(),
+          database_set_show.lin_server_database.text())
 
 
     #这是入库的数量输入界面
@@ -1244,9 +1329,11 @@ if __name__ == '__main__':
     admin_register_show=Admin_Resigter_class()
     admin_register_show.show()
 
+    #根本就没有用
     write_password_show=write_password_class()
     # mytimeshow= time_show()
     # mytimeshow.show()
+
 
     # 主界面
     main_window_show = Main_Window_class()

@@ -2,6 +2,8 @@ from shutil import copyfile
 #src 源文件
 #dst 最后位置
 
+"""只是把文件从2018的ui文件转移到时todqy中"""
+
 def run_copy():
     """迁移文件的脚本"""
     #这是源文件
@@ -12,7 +14,7 @@ def run_copy():
     #这是文件要拷贝放在的地方
     file_list=['Main_Window.py','wire_ui.py','Bind_Wire.py','Date_Analyse.py',
                'Set_Machine.py', 'history.py','wire_images_rc.py', 'wireandmachine_lh.py',
-               'SERSON.PY','Thing_Check.py','lend_registe.py','Update.py','Login.py','set_machine_kitting.py','put_in.py']
+               'SERSON.PY','Thing_Check.py','lend_registe.py','Update.py','Login.py','set_machine_kitting.py','put_in.py','database_set.py']
 
     for i in file_list:
         fp=open(file_head+i,'rb')

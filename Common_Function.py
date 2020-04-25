@@ -113,6 +113,8 @@ mouse_event class
 """
 
 
+
+
 from traceback import print_exc
 import re
 import socket
@@ -187,8 +189,6 @@ Time_now=str(time_now)[:10]
 
 
 #
-
-
 def set_server_ip_admin_password_database(ip,admin,password,database):
     global server_ip,server_admin,server_password,server_database
     server_ip=ip
@@ -200,19 +200,22 @@ def set_server_ip_admin_password_database(ip,admin,password,database):
 # server_ip='127.0.0.1:443'
 # server_database='management'
 
-
-server_ip='172.17.130.106'
-server_database='xueshengxinxi'
-
-server_admin='sa'
-server_password='123456'
+# server_ip='172.17.130.106:5900'
+# server_database='xueshengxinxi'
+# server_admin='sa'
+# server_password='123456'
 
 
+# 172.17.130.133:5900
+# server_ip='172.17.130.133:5900'
+# server_database='management'
+# server_admin='sa'
+# server_password='642807512'
 
-
-
-
-
+# server_ip='127.0.0.1:5900'
+# server_database='management'
+# server_admin='sa'
+# server_password='123456'
 
 
 
@@ -253,12 +256,30 @@ def Ftp():
     return ftp
 
 
+def Execute_Sql(sql_order):
+    try:
+
+        print('47=%s'%sql_order)
+        #Connect = connect('172.17.130.106:5900', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
+        Connect = connect("172.17.130.107:5900", "sa", "642807512","management", login_timeout=10)  # 建立连接
+        cursor = Connect.cursor()
+        cursor.execute(sql_order)
+        Connect.commit()
+        Connect.close()
+        cursor.close()
+
+    except Exception:
+        print_exc()
+
+
+
+
 # 执行SQL，而不要数据(sql指令)
 def Execute_Sql_No_Get_Date(sql_order):
     try:
-        #print('47=%s'%sql_order)
-        #Connect = connect('172.17.130.106', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
-        Connect = connect(server_ip, server_admin, server_password, server_database, login_timeout=1)  # 建立连接
+        print('47=%s'%sql_order)
+        #Connect = connect('172.17.130.106:5900', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
+        Connect = connect(server_ip, server_admin, server_password,server_database, login_timeout=10)  # 建立连接
 
         cursor = Connect.cursor()
         cursor.execute(sql_order)
@@ -270,11 +291,12 @@ def Execute_Sql_No_Get_Date(sql_order):
 
 
 #  执行SQL语句并且有获取数据的要求(SQL指令)
+
 def Execute_Sql_Get_Date(sql_order):
     try:
-
-        ##print(sql_order)
-        #Connect = connect('172.17.130.106', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
+        # print(sql_order)
+        # Connect = connect('172.17.130.106:5900', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
+        print('得到的东西',server_ip, server_admin, server_password, server_database)
         Connect = connect(server_ip, server_admin, server_password, server_database, login_timeout=1)  # 建立连接
 
         cursor = Connect.cursor()
@@ -283,7 +305,7 @@ def Execute_Sql_Get_Date(sql_order):
         Connect.commit()
         Connect.close()
         cursor.close()
-        ##print(get_sql_data)
+        print('559',get_sql_data)
         return get_sql_data
 
     except Exception:
@@ -942,3 +964,8 @@ class Mouse_event(QMainWindow):
         #print("鼠标移动事件")
         pass
 
+
+
+#关闭程序
+def end_program(pro_name):
+    os.system('%s%s' % ("taskkill /F /IM ",pro_name))

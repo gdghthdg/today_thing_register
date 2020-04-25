@@ -310,7 +310,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             if j!='':
                 sql_order = "insert into NC_KUCUN_INOUT(TYPEOF,TXM,WUPIN_NAME,QTY,INOUT,STATUS,CDT,USERNAME,USERBUM,COMMENTS,ENG_NAME,USERPHONE,STATION,WUPIN_OK,WUPIN_NG) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" \
                             % (i[0], i[1], i[2], j, i[4], storage[s], Get_Now_Time(), i[6], i[7], i[8], i[9], i[10], i[11],
-                               self.lin_OK_Serson.text(), self.lin_Ng_Serson.text())
+                               self. lin_OK_Serson.text().upper(), self. lin_Ng_Serson.text().upper())
                 Execute_Sql_No_Get_Date(sql_order)
 
                 if s==0:
@@ -358,7 +358,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             if self.com_Thing_class.currentText() == '其他（机种不用选）' or self.com_Thing_class.currentText()=='' and self.com_operation.currentText()=='入庫':
 
                 if Determine_wire(self.lin_Thing_barcode.text()) in ['LS-000','ls-000']:
-                    #curruct_text.append(self.lin_OK_Serson.text())
+                    #curruct_text.append(self. lin_OK_Serson.text().upper())
                     pass
 
             # 检验是否完全输入数据
@@ -381,7 +381,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             #self.Message_two(str(curruct_text))
             if '' not in curruct_text and '此系统没有这种線材' not in curruct_text:
                 # 这是确认密码
-                if self.lin_admin_password.text()=='1':
+                if self.lin_admin_password.text()=='admin123':
                     #检查物品数量是否足够
                     if self.Check_Thing_Is_Zero()==True:
                         # 确认是否录入,还有检查物品是否有库存
@@ -427,7 +427,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
                             if self.com_operation.currentText() != '入庫' or self.com_Thing_class.currentText()=='SERSON':
                                 sql_order = "insert into NC_KUCUN_INOUT(TYPEOF,TXM,WUPIN_NAME,QTY,INOUT,STATUS,CDT,USERNAME,USERBUM,COMMENTS,ENG_NAME,USERPHONE,STATION,WUPIN_OK,WUPIN_NG) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" \
-                                          %(i[0],i[1],i[2],i[3],i[4],i[5],Get_Now_Time(),i[6],i[7],i[8],i[9],i[10],i[11],self.lin_OK_Serson.text(),self.lin_Ng_Serson.text())
+                                          %(i[0],i[1],i[2],i[3],i[4],i[5],Get_Now_Time(),i[6],i[7],i[8],i[9],i[10],i[11],self. lin_OK_Serson.text().upper(),self. lin_Ng_Serson.text().upper())
                                 Execute_Sql_No_Get_Date(sql_order)
 
                                 # 把得到的物品进行加减，存入数据库中，库存
@@ -557,14 +557,14 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 if self.com_method.currentText() in ['NG品更換']:
 
                     # 把好的serson出库，位置从測試備品房变成产线
-                    if self.lin_OK_Serson.text() in Get_Serson_AllName:
+                    if self. lin_OK_Serson.text().upper() in Get_Serson_AllName:
                         sql_order = "update Serson_Table set Address='%s',Work_Name='%s',CDT='%s',Thing_Statius='SERSON' where Serson_Name='%s'" % (
-                            self.com_lines.currentText(), self.lab_worker_name.text(),Get_Now_Time_have_zero(),self.lin_OK_Serson.text())
+                            self.com_lines.currentText(), self.lab_worker_name.text(),Get_Now_Time_have_zero(),self.lin_OK_Serson.text().upper())
                         Execute_Sql_No_Get_Date(sql_order)
 
                     else:
                         sql_order = "insert into Serson_Table(Serson_Name,Station,Work_Name,Address,CDT,Thing_Statius) values('%s','%s','%s','%s','%s','%s')" % (
-                            self.lin_OK_Serson.text(), 'OK', self.lab_worker_name.text(), self.com_lines.currentText(),Get_Now_Time_have_zero(),'SERSON')
+                            self. lin_OK_Serson.text().upper(), 'OK', self.lab_worker_name.text(), self.com_lines.currentText(),Get_Now_Time_have_zero(),'SERSON')
                         Execute_Sql_No_Get_Date(sql_order)
 
                     print('383=%s' % sql_order)
@@ -572,42 +572,42 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
 
                     #物品已经存在,把位置,状态,人员,时间进行更改
-                    if self.lin_Ng_Serson.text() in Get_Serson_AllName:
+                    if self. lin_Ng_Serson.text().upper() in Get_Serson_AllName:
                         sql_order = "update Serson_Table set Station='%s',Address='%s',Work_Name='%s',CDT='%s',Thing_Statius='SERSON' where Serson_Name='%s'" % (
-                            'NG', '測試備品房', self.lab_worker_name.text(), self.lin_Ng_Serson.text(),Get_Now_Time_have_zero())
+                            'NG', '測試備品房', self.lab_worker_name.text(),Get_Now_Time_have_zero(),self.lin_Ng_Serson.text().upper())
                         Execute_Sql_No_Get_Date(sql_order)
                         print('376=%s' % sql_order)
 
                     else:
                         sql_order = "insert into Serson_Table(Serson_Name,Station,Work_Name,Address,CDT,Thing_Statius) values('%s','%s','%s','%s','%s','%s')" % (
-                        self.lin_Ng_Serson.text(), 'NG', self.lab_worker_name.text(), '測試備品房',Get_Now_Time_have_zero(),'SERSON')
+                        self. lin_Ng_Serson.text().upper(), 'NG', self.lab_worker_name.text(), '測試備品房',Get_Now_Time_have_zero(),'SERSON')
                         Execute_Sql_No_Get_Date(sql_order)
 
 
 
 
                 elif self.com_method.currentText() in ['OK退料']:
-                    if self.lin_OK_Serson.text() in Get_Serson_AllName:
+                    if self. lin_OK_Serson.text().upper() in Get_Serson_AllName:
                         sql_order = "update Serson_Table set Station='%s',Address='%s',Work_Name='%s',CDT='%s',Thing_Statius='SERSON' where Serson_Name='%s'" % (
-                            'OK', '測試備品房', self.lab_worker_name.text(),Get_Now_Time_have_zero(), self.lin_OK_Serson.text())
+                            'OK', '測試備品房', self.lab_worker_name.text(),Get_Now_Time_have_zero(), self. lin_OK_Serson.text().upper())
                         Execute_Sql_No_Get_Date(sql_order)
 
                     else:
                         sql_order = "insert into Serson_Table(Serson_Name,Station,Work_Name,Address,CDT,Thing_Statius) values('%s','%s','%s','%s','%s','%s')" % (
-                            self.lin_OK_Serson.text(), 'OK', self.lab_worker_name.text(),'測試備品房',Get_Now_Time_have_zero(),'SERSON')
+                            self. lin_OK_Serson.text().upper(), 'OK', self.lab_worker_name.text(),'測試備品房',Get_Now_Time_have_zero(),'SERSON')
                         Execute_Sql_No_Get_Date(sql_order)
 
 
 
                 elif self.com_method.currentText() in ['NG退料']:
-                    if self.lin_Ng_Serson.text() in Get_Serson_AllName:
+                    if self. lin_Ng_Serson.text().upper() in Get_Serson_AllName:
                         sql_order = "update Serson_Table set Station='%s',Address='%s',Work_Name='%s',CDT='%s',Thing_Statius='SERSON' where Serson_Name='%s'" % (
-                            'NG', '測試備品房', self.lab_worker_name.text(),Get_Now_Time_have_zero(), self.lin_Ng_Serson.text())
+                            'NG', '測試備品房', self.lab_worker_name.text(),Get_Now_Time_have_zero(), self.lin_Ng_Serson.text().upper())
                         Execute_Sql_No_Get_Date(sql_order)
 
                     else:
                         sql_order = "insert into Serson_Table(Serson_Name,Station,Work_Name,Address,CDT,Thing_Statius) values('%s','%s','%s','%s','%s','%s')" % (
-                            self.lin_Ng_Serson.text(), 'NG', self.lab_worker_name.text(), '測試備品房',Get_Now_Time_have_zero(),'SERSON')
+                            self. lin_Ng_Serson.text().upper(), 'NG', self.lab_worker_name.text(), '測試備品房',Get_Now_Time_have_zero(),'SERSON')
 
                         Execute_Sql_No_Get_Date(sql_order)
 
@@ -616,15 +616,15 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                     print('加量')
                     print(self.lin_OK_Serson)
                     print(Get_Serson_AllName)
-                    if self.lin_OK_Serson.text() in Get_Serson_AllName:
+                    if self. lin_OK_Serson.text().upper() in Get_Serson_AllName:
                         print('加量')
                         sql_order = "update Serson_Table set Station='%s',Address='%s',Work_Name='%s',CDT='%s',Thing_Statius='SERSON' where Serson_Name='%s'" % (
-                            'OK', self.com_lines.currentText(), self.lab_worker_name.text(), self.lin_OK_Serson.text(),Get_Now_Time_have_zero())
+                            'OK', self.com_lines.currentText(), self.lab_worker_name.text(),Get_Now_Time_have_zero(), self.lin_OK_Serson.text().upper())
 
 
                     else:
                         sql_order = "insert into Serson_Table(Serson_Name,Station,Work_Name,Address,CDT,Thing_Statius) values('%s','%s','%s','%s','%s','%s')" % (
-                            self.lin_OK_Serson.text(), 'OK', self.lab_worker_name.text(), self.com_lines.currentText(),Get_Now_Time_have_zero(),'SERSON')
+                            self. lin_OK_Serson.text().upper(), 'OK', self.lab_worker_name.text(), self.com_lines.currentText(),Get_Now_Time_have_zero(),'SERSON')
 
                     Execute_Sql_No_Get_Date(sql_order)
 
@@ -765,7 +765,6 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
                 #self.pushButton.setStyleSheet("*{background:#00000000;color:#00000000;}")
 
 
-
                 self.Fra_mac_sys.setStyleSheet("QComboBox::drop-down{background:#00000000;border-left-width:0px;border-left-style:solid;border-left-color:gray;}")
 
                 if self.com_Thing_class.currentText()!='SERSON':
@@ -803,6 +802,7 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
         self.lab_Thing_truename.setText('')
         self.lab_ok_place.setText('')
         self.lab_ng_place.setText('')
+
     def Clear_all(self):
         try:
             self.Clear_Workerinfo()
@@ -844,7 +844,6 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             print('清除执行成功')
         except Exception:
             print_exc()
-
 
 
 
@@ -1125,6 +1124,13 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
 
         if self.lin_Thing_barcode.text()[:2] in ['LS', 'UP','ls','up']:
             self.lin_OK_Serson.setFocus()
+            # if self.com_operation.currentText() in ['出庫']:
+            #     self.
+
+
+
+
+
 
         # 人員一掃條碼就判斷比對是否一致
 
@@ -1173,30 +1179,36 @@ class wire_change_son(Ui_MainWindow,Farther,QMainWindow):
             sender=self.sender()
 
 
-            if self.lin_OK_Serson.text()[:3] not in ['LS-','ls-'] and self.com_method.currentText() in ['NG品更換'] and sender.objectName()=='lin_OK_Serson':
+            if self. lin_OK_Serson.text().upper()[:3] not in ['LS-','ls-'] and self.com_method.currentText() in ['NG品更換'] and sender.objectName()=='lin_OK_Serson':
 
                 self.Message_one('输入格式不正确')
                 self.lin_OK_Serson.setText('')
                 return 'no_input_complete'
 
             else:
-                sql_order = "select Station,Address from Serson_Table where Serson_name='%s'" % self.lin_OK_Serson.text()
+                sql_order = "select Station,Address from Serson_Table where Serson_name='%s'" % self. lin_OK_Serson.text().upper()
                 serson_use_statius = Execute_Sql_Get_Date(sql_order)
                 print('937=%s' % serson_use_statius)
-                if len(serson_use_statius)!=0:
+                if len(serson_use_statius)!=0 and self.com_operation.currentText() in ['NG品更換','出庫']:
                     if serson_use_statius[0][0] == 'NG' or serson_use_statius[0][1] != '測試備品房':
                         self.Message_one('NG品不准出库或者此物品不存在或已在线上')
                         self.lin_OK_Serson.setText('')
                         self.lin_OK_Serson.setFocus()
                     else:
-                        self.lin_Ng_Serson.setFocus()
+                        if self.com_operation.currentText() in ['出庫']:
+                            self.lin_admin_password.setFocus()
+                        else:
+                            self.lin_Ng_Serson.setFocus()
+
                 else:
                     if self.com_operation.currentText() in ['NG品更換']:
                         self.lin_Ng_Serson.setFocus()
+                    else:
+                        self.lin_admin_password.setFocus()
 
 
 
-            if self.lin_Ng_Serson.text()[:3] not in ['LS-','ls-'] and self.com_method.currentText() in ['NG品更換'] and sender.objectName()=='lin_Ng_Serson':
+            if self. lin_Ng_Serson.text().upper()[:3] not in ['LS-','ls-'] and self.com_method.currentText() in ['NG品更換'] and sender.objectName()=='lin_Ng_Serson':
                 self.Message_one('输入格式不正确')
                 self.lin_Ng_Serson.setText('')
                 return 'no_input_complete'

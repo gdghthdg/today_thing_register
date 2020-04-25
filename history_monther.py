@@ -4,7 +4,7 @@ from PyQt5.QtCore import QDate
 
 from Common_Function import *
 from history import Ui_MainWindow
-
+773
 Get_data_num=[]
 #All_name = ['TYPEOF', 'TXM', 'WUPIN_NAME', 'CDT', 'WUPIN_OK', 'WUPIN_NG', 'COMMENTS', 'QTY', 'INOUT', 'STATUS','USERNAME', 'USERBUM', 'USERPHONE', 'STATION', 'ENG_NAME']
 All_name = ["操作时间","名称","条形码","物品全称","数量","出入库类型","出入库方式","所用站点","更换人","领用课别","联系方式","ENG人员","ok编码","ng编码","备注"]

@@ -29,6 +29,7 @@ os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\sound.py C:\Users\
 
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\set_address_red.py C:\Users\Administrator\Desktop\20190822\set_address_red.ui')
 os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\set_shortcut.py C:\Users\Administrator\Desktop\20190822\set_shortcut.ui')
+os.system(r'pyuic5 -o C:\Users\Administrator\Desktop\20190822\database_set.py C:\Users\Administrator\Desktop\20190822\database_set.ui')
 
 
 #一个移动的脚本
