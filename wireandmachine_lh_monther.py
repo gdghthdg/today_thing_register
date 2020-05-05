@@ -26,40 +26,43 @@ class Wire_machine_lh(Ui_MainWindow,Farther,No_Main_Window,QMainWindow):
 
 
     def Set_Table(self):#
-        All_Machine.clear()
-        All_Machine_Dist.clear()
+        try:
+            All_Machine.clear()
+            All_Machine_Dist.clear()
 
 
-        #sql_order="select WUPIN_NAME,TYPEOF,TXM,LH from NC_KUCUN_LHTEST"
-        #备份的
-        sql_order = "select WUPIN_NAME,TYPEOF,TXM,LH,Thing_March from NC_KUCUN_LH order by WUPIN_NAME"
+            #sql_order="select WUPIN_NAME,TYPEOF,TXM,LH from NC_KUCUN_LHTEST"
+            #备份的
+            sql_order = "select WUPIN_NAME,TYPEOF,TXM,LH,Thing_March from NC_KUCUN_LH order by WUPIN_NAME"
 
-        get_reslute=Execute_Sql_Get_Date(sql_order)
-        #print('22=%s'%get_reslute)
+            get_reslute=Execute_Sql_Get_Date(sql_order)
+            #print('22=%s'%get_reslute)
 
 
-        #print(get_reslute)
-        #print(len(get_reslute))
+            #print(get_reslute)
+            #print(len(get_reslute))
 
-        for xy in get_reslute:
-            All_Machine.append(xy[0])
+            for xy in get_reslute:
+                All_Machine.append(xy[0])
 
-            All_Machine_Dist[xy[0]]=[xy[1]]
-            All_Machine_Dist[xy[0]].append(xy[2])
-            All_Machine_Dist[xy[0]].append(xy[3])
-            All_Machine_Dist[xy[0]].append(xy[4])
+                All_Machine_Dist[xy[0]]=[xy[1]]
+                All_Machine_Dist[xy[0]].append(xy[2])
+                All_Machine_Dist[xy[0]].append(xy[3])
+                All_Machine_Dist[xy[0]].append(xy[4])
 
-        All_Machine_Dist_Keys=list(All_Machine_Dist.keys())
+            All_Machine_Dist_Keys=list(All_Machine_Dist.keys())
 
-        #print('33=%s'%All_Machine_Dist_Keys)
-        #print(All_Machine_Dist)
+            #print('33=%s'%All_Machine_Dist_Keys)
+            #print(All_Machine_Dist)
 
-        self.tableWidget.setRowCount(len(get_reslute))
+            self.tableWidget.setRowCount(len(get_reslute))
 
-        for j in range(len(get_reslute)):
-            for i in range(5):
-                data = QTableWidgetItem(get_reslute[j][i])  # 转换后可插入表格
-                self.tableWidget.setItem(j, i, data)
+            for j in range(len(get_reslute)):
+                for i in range(5):
+                    data = QTableWidgetItem(get_reslute[j][i])  # 转换后可插入表格
+                    self.tableWidget.setItem(j, i, data)
+        except Exception:
+            print_exc()
 
 # 从table得到数值，并且设置在界面的lineedit
     def Get_Table_Date(self,i,j):

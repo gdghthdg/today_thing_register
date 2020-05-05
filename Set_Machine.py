@@ -50,7 +50,7 @@ class Ui_Form(object):
         self.label_3.setObjectName("label_3")
         self.tableWidget = QtWidgets.QTableWidget(Form)
         self.tableWidget.setEnabled(True)
-        self.tableWidget.setGeometry(QtCore.QRect(530, 80, 531, 631))
+        self.tableWidget.setGeometry(QtCore.QRect(530, 80, 621, 631))
         font = QtGui.QFont()
         font.setFamily("微軟正黑體")
         self.tableWidget.setFont(font)

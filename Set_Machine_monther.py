@@ -17,14 +17,16 @@ class kitting_show_class(set_machine_kitting.Ui_Form,Farther, QMainWindow):
         try:
             get_kitting_address_false_true = []
             get_kitting_address_false_true.append(kitting_show.checkBox1300.isChecked())
+            get_kitting_address_false_true.append(kitting_show.checkBox1370.isChecked())
             get_kitting_address_false_true.append(kitting_show.checkBox1450.isChecked())
             get_kitting_address_false_true.append(kitting_show.checkBox1600.isChecked())
 
             #print('douxeu:',get_kitting_address_false_true)
 
             kitting_data = []
-            address_list=[1300,1450,1600]
-            for i in range(3):
+            address_list=[1300,1370,1450,1600]
+
+            for i in range(4):
                 if get_kitting_address_false_true[i]==True:
                     kitting_data.append(address_list[i])
 
@@ -61,6 +63,8 @@ class SET_MACHINE_USE(Ui_Form,Farther,No_Main_Window,QMainWindow):
         #self.com_machine_use.setMaxLength(4)#
         self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint)
         self.com_machine_use.setValidator(testing_machine('True|False'))
+
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
 
     def return_mainwindow(self):
         if self.Message_two('是否保存?')==QMessageBox.Yes:
@@ -226,6 +230,7 @@ class SET_MACHINE_USE(Ui_Form,Farther,No_Main_Window,QMainWindow):
 #一个是主函数,只是在这个py中都会执行,如果要有一个被引用的话,大概要以怎样的形式表达
 #如果是一个函数形式来表达的话,模块化的
 if __name__ == "__main__":
+    set_server_ip_admin_password_database('172.17.130.106:5900','sa','123456','xueshengxinxi')
     app = QtWidgets.QApplication(argv)
     ui = SET_MACHINE_USE()
     kitting_show=kitting_show_class()

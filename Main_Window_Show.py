@@ -31,23 +31,31 @@ keep_time=[]
 class mainwindow_common_function(Farther,QMainWindow):
     def common_to_lend(self,delete_sql_order,interface,column_num):
         try:
-            #print('2341', admin_register_show.isHidden())
 
-            if admin_register_show.isHidden() == True:
-                #print('789')
-                admin_register_show.show()
+            text, ok = QInputDialog.getText(self, "title", "PASSWORD:", QLineEdit.Normal, '')
+            if text =="1":
+                print("ok=",ok)
+                file_name = self.to_lend_function(delete_sql_order, interface, column_num)
             else:
-                admin_register_show.close()
+                self.Message_one('密码错误')
 
-            if admin_register_show.lineEdit.text() == '13579':
-                try:
-                    file_name = self.to_lend_function(delete_sql_order, interface, column_num)
 
-                    admin_register_show.lineEdit.setText("")
-
-                except Exception:
-                    print_exc()
-
+            # #print('2341', admin_register_show.isHidden())
+            #
+            # if admin_register_show.isHidden() == True:
+            #     #print('789')
+            #     admin_register_show.show()
+            # else:
+            #     admin_register_show.close()
+            #
+            # if admin_register_show.lineEdit.text() == '13579':
+            #     try:
+            #         file_name = self.to_lend_function(delete_sql_order, interface, column_num)
+            #
+            #         admin_register_show.lineEdit.setText("")
+            #
+            #     except Exception:
+            #         print_exc()
 
 
         except Exception:
@@ -263,8 +271,8 @@ class Bind_Wire_son(Bind_Wire_monther.Wirte_wireinfo,QMainWindow):  #
 
 
     def to_lend(self):
-        delete_sql_order = "delete MACHINE_LHTEST1"
-        common_function.common_to_lend(delete_sql_order,'MACHINE_LH', 17)
+        delete_sql_order = "delete MACHINE_LH"
+        common_function.common_to_lend(delete_sql_order,'MACHINE_LH', 18)
 
 
 
@@ -345,14 +353,15 @@ class set_machine_kitting_class(Set_Machine_monther.kitting_show_class,QMainWind
         try:
             get_kitting_address_false_true = []
             get_kitting_address_false_true.append(kitting_show.checkBox1300.isChecked())
+            get_kitting_address_false_true.append(kitting_show.checkBox1370.isChecked())
             get_kitting_address_false_true.append(kitting_show.checkBox1450.isChecked())
             get_kitting_address_false_true.append(kitting_show.checkBox1600.isChecked())
 
             #print('douxeu:', get_kitting_address_false_true)
 
             kitting_data = []
-            address_list = [1300, 1450, 1600]
-            for i in range(3):
+            address_list = [1300,1370, 1450, 1600]
+            for i in range(4):
                 if get_kitting_address_false_true[i] == True:
                     kitting_data.append(address_list[i])
 
@@ -472,6 +481,7 @@ class Admin_Resigter_class(Login_monther.Login_class,QMainWindow):
             get_result=Execute_Sql_Get_Date(sql_order)
             print('365',get_result)
 
+
             #从sql得到的东西有很多的空格
             for user in get_result:
                 user_id=str(user[0]).replace(' ','')
@@ -572,7 +582,7 @@ class DataBase_Set_inherit(database_set.Ui_Form,Farther,QMainWindow):
             # 执行SQL，而不要数据(sql指令),选择了最新的
             sql_order="select ip,admin,password,databases from admin_password WHERE CDT=(select MAX(CDT) from admin_password)"
 
-            Connect = connect("127.0.0.1:5900", "sa", "642807512", "management", login_timeout=10)  # 建立连接
+            Connect = connect("172.17.130.106:5900", "sa", "123456", "xueshengxinxi", login_timeout=10)  # 建立连接
             cursor = Connect.cursor()
             cursor.execute(sql_order)
             get_sql_data = cursor.fetchall()
@@ -611,10 +621,22 @@ class DataBase_Set_inherit(database_set.Ui_Form,Farther,QMainWindow):
             return
 
         self.Message_one("可以连接")
-        sql_order="insert into admin_password(use_yes_no,ip,databases,admin,password,CDT) values ('%s','%s','%s','%s','%s','%s')"\
-                  %('1',self.lin_server_ip.text(),self.lin_server_database.text(),self.lin_server_admin.text(),self.lin_server_password.text(),Get_Now_Time())
+        Connect.close
 
-        Execute_Sql(sql_order)
+
+
+        sql_order="insert into admin_password(ip,databases,admin,password,CDT) values ('%s','%s','%s','%s','%s')"\
+                  %(self.lin_server_ip.text(),self.lin_server_database.text(),self.lin_server_admin.text(),self.lin_server_password.text(),Get_Now_Time())
+
+        Connect = connect("172.17.130.106:5900", "sa", "123456", "xueshengxinxi", login_timeout=10)  # 建立连接
+        cursor = Connect.cursor()
+        cursor.execute(sql_order)
+        Connect.commit()
+        Connect.close()
+        cursor.close()
+
+        self.set_ip_database()
+
 
 
 

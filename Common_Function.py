@@ -110,6 +110,20 @@ mouse_event class
     鼠标移动事件                      mouseMoveEvent()
 
 
+qtablewidget自适应列
+self.tableWidget.horizontalHeader().setStretchLastSection(True)
+
+/*QT5版本之前设置自动等宽*/
+ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+  但是到了QT5这个是行不通了的，需通过下面的代码来设置：
+
+/*设置tablewidget等宽*/
+QHeaderView* headerView = ui->tableWidget->horizontalHeader();
+headerView->setSectionResizeMode(QHeaderView::Stretch);
+/*或者下面的代码*/
+ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
 """
 
 
@@ -145,6 +159,8 @@ decimal.__version__
 
 time_now=datetime.now()
 Time_now=str(time_now)[:10]
+
+
 
 
 
@@ -187,6 +203,11 @@ Time_now=str(time_now)[:10]
 
 #api接口就是用http,tcp/ip用的嗎
 
+
+server_ip = ''
+server_admin = ''
+server_password = ''
+server_database = ''
 
 #
 def set_server_ip_admin_password_database(ip,admin,password,database):
@@ -261,7 +282,8 @@ def Execute_Sql(sql_order):
 
         print('47=%s'%sql_order)
         #Connect = connect('172.17.130.106:5900', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
-        Connect = connect("172.17.130.107:5900", "sa", "642807512","management", login_timeout=10)  # 建立连接
+        #Connect = connect("172.17.130.106:5900", "sa", "642807512","management", login_timeout=10)  # 建立连接
+        Connect = connect(server_ip, server_admin, server_password, server_database, login_timeout=10)
         cursor = Connect.cursor()
         cursor.execute(sql_order)
         Connect.commit()
@@ -294,7 +316,7 @@ def Execute_Sql_No_Get_Date(sql_order):
 
 def Execute_Sql_Get_Date(sql_order):
     try:
-        # print(sql_order)
+        print(sql_order)
         # Connect = connect('172.17.130.106:5900', 'sa', '123456', 'xueshengxinxi',login_timeout=1)  # 建立连接
         print('得到的东西',server_ip, server_admin, server_password, server_database)
         Connect = connect(server_ip, server_admin, server_password, server_database, login_timeout=1)  # 建立连接
@@ -599,7 +621,7 @@ class Farther(QMainWindow):
         self.cwd = os.getcwd()  # 获取当前程序文件位置
 
         try:
-            fileName_choose, filetype = QFileDialog.getOpenFileName(self,"选取文件",self.cwd,"All Files (*);;Text Files (*.xls);;Text Files (*.xlsx)")  # 设置文件扩展名过滤,用双分号间隔
+            fileName_choose, filetype = QFileDialog.getOpenFileName(self,"选取文件",self.cwd,"Text Files (*.xls);;Text Files (*.xlsx);;All Files (*)")  # 设置文件扩展名过滤,用双分号间隔
 
             if fileName_choose == "":
                 #print("\n取消选择")
@@ -609,7 +631,9 @@ class Farther(QMainWindow):
             #print(fileName_choose)
             #print("文件筛选器类型: ", filetype)
 
-            Connect = connect('172.17.130.106', 'sa', '123456', 'xueshengxinxi', login_timeout=1)  # 建立连接
+            # Connect = connect('172.17.130.106:5900', 'sa', '123456', 'xueshengxinxi', login_timeout=5)  # 建立连接
+
+            Connect = connect(server_ip, server_admin, server_password, server_database, login_timeout=10)
             cursor = Connect.cursor()
 
             #这是一个删除指令
@@ -619,7 +643,7 @@ class Farther(QMainWindow):
             table = data.sheets()[0]  # 打开第一张表
             nrows = table.nrows  # 获取表的行数
 
-            #print(nrows)
+            print(nrows)
             Y = 0
 
             for i in range(1,nrows):  # 循环逐行打印
@@ -627,7 +651,7 @@ class Farther(QMainWindow):
                 #这是得到excel中内容
                 i = table.row_values(i)[:read_column]  # $$$$$
 
-                #print('excel中的内容',i)
+                print('excel中的内容',i)
 
     #这是serson的导入
                 if order == "Serson_Table":
@@ -635,8 +659,8 @@ class Farther(QMainWindow):
     #这是machine_contrast导入
 
                 elif order=="MACHINE_LH":
-                    sql_order = "insert into MACHINE_LH(SIZE,MACHINES,SYSTEMS,JI_OR_SKD,MONDEL,BI,CTAG,BMA,IAS,AGIS,FFC,INV_POWER_WIRE,DRIVER_MARCH,DRIVER,POWER_WIRE,MACHINE_STATIUS) values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" \
-                                        % (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13],i[14],'True')
+                    sql_order = "insert into MACHINE_LH(SIZE,MACHINES,SYSTEMS,JI_OR_SKD,MONDEL,BI,CTAG,BMA,IAS,AGIS,FFC,INV_POWER_WIRE,DRIVER,DRIVER_MARCH,POWER_WIRE,MACHINE_STATIUS,KITTING_STATION,CLASS) values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" \
+                                        % (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13],i[14],i[15],i[16],i[17])
 
                 elif order=="NC_KUCUN_LH":
                     sql_order = "insert into NC_KUCUN_LH(TYPEOF,TXM,WUPIN_NAME,LH,Thing_March) values('%s','%s','%s','%s','%s')"%(i[0],i[1],i[2],i[3],i[4])
@@ -969,3 +993,8 @@ class Mouse_event(QMainWindow):
 #关闭程序
 def end_program(pro_name):
     os.system('%s%s' % ("taskkill /F /IM ",pro_name))
+
+
+#执行cmd
+def cmd_order(order):
+    os.system(order)

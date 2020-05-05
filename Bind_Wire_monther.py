@@ -213,22 +213,25 @@ class Wirte_wireinfo(Ui_MainWindow, Farther, No_Main_Window,QMainWindow):
 
 
     def Set_Table(self):
-        # All_Machine.clear()
-        machine_all.clear()
-        print('20r1=%s')
-        sql_order="select MACHINES,SIZE,SYSTEMS,JI_OR_SKD,MONDEL,BI,CTAG,BMA,IAS,AGIS,FFC,INV_POWER_WIRE,DRIVER,DRIVER_MARCH,POWER_WIRE from MACHINE_LH where MACHINE_STATIUS='True' order by SIZE"
-        get_reslute=Execute_Sql_Get_Date(sql_order)
-        #get_reslute=sorted(list(set(get_reslute)))
-        print('201=%s'%get_reslute)
-        self.tab_machine_lh.setRowCount(len(get_reslute))  #设置table的列数
+        try:
+            # All_Machine.clear()
+            machine_all.clear()
+            print('20r1=%s')
+            sql_order="select MACHINES,SIZE,SYSTEMS,JI_OR_SKD,MONDEL,BI,CTAG,BMA,IAS,AGIS,FFC,INV_POWER_WIRE,DRIVER,DRIVER_MARCH,POWER_WIRE from MACHINE_LH where MACHINE_STATIUS='True' order by SIZE"
+            get_reslute=Execute_Sql_Get_Date(sql_order)
+            #get_reslute=sorted(list(set(get_reslute)))
+            print('201=%s'%get_reslute)
+            self.tab_machine_lh.setRowCount(len(get_reslute))  #设置table的列数
 
-        for i in range(15):
-            for j in range(len(get_reslute)):
-                data = QTableWidgetItem(str(get_reslute[j][i]))  # 转换后可插入表格
-                self.tab_machine_lh.setItem(j, i, data)
+            for i in range(15):
+                for j in range(len(get_reslute)):
+                    data = QTableWidgetItem(str(get_reslute[j][i]))  # 转换后可插入表格
+                    self.tab_machine_lh.setItem(j, i, data)
 
-        for machine in get_reslute:
-            machine_all.append(machine[0])
+            for machine in get_reslute:
+                machine_all.append(machine[0])
+        except Exception:
+            print_exc()
 
     def TEST(self,i,j): #这是一个通过触发table来得到它的值的函数
         #print(i,j)
@@ -308,8 +311,79 @@ class Wirte_wireinfo(Ui_MainWindow, Farther, No_Main_Window,QMainWindow):
 
 
     def lend(self):
-        save_file_name=self.lend_function(self.tab_machine_lh)
+        #save_file_name=self.lend_function(self.tab_machine_lh)
         #print('44',save_file_name)
+
+
+
+        tablewidget=self.tab_machine_lh
+        self.cwd = os.getcwd()  # 获取当前程序文件位置
+        fileName_choose, filetype = QFileDialog.getSaveFileName(self,
+                                                                "文件保存",
+                                                                self.cwd,  # 起始路径
+                                                                "Text Files (*.xls);;All Files (*);;Text Files (*.xlm)")
+
+        if fileName_choose == "":
+            # print("\n取消选择")
+            return
+
+        # print("\n你选择要保存的文件为:")
+        # print(fileName_choose)
+
+        # 创建一个文件
+        # open(fileName_choose,'w')
+        # print("文件筛选器类型: ", filetype)
+
+        try:
+            xls = xlwt.Workbook()
+            sheet = xls.add_sheet('sheet 1')
+
+            contend=["SIZE", "MACHINES", "SYSTEMS", "JI_OR_SKD", "MONDEL", "BI", "CTAG", "BMA", "IAS", "AGIS", "FFC",
+             "INV_POWER_WIRE", "DRIVER", "DRIVER_MARCH", "POWER_WIRE", "MACHINE_STATIUS", "KITTING_STATION", "CLASS"]
+
+            for i in range(18):
+                # print(tablewidget.horizontalHeaderItem(i).text())
+                # 这是一个把标题放进excel
+                sheet.write(0, i, contend[i])
+
+            #这是把内容放进excel中
+            sql_order="select SIZE,MACHINES,SYSTEMS,JI_OR_SKD,MONDEL,BI,CTAG,BMA,IAS,AGIS,FFC,INV_POWER_WIRE,DRIVER,DRIVER_MARCH,POWER_WIRE,MACHINE_STATIUS,KITTING_STATION,CLASS from MACHINE_LH where MACHINE_STATIUS='True' order by SIZE"
+
+            get_result=Execute_Sql_Get_Date(sql_order)
+
+            for j in range(1, tablewidget.rowCount()):
+                    for i in range(18):
+                        sheet.write(j, i, get_result[j][i])
+
+                    #这是excel中填入的东西
+                    #sheet.write(j, i, tablewidget.item(j - 1, i).text())
+
+
+            xls.save(fileName_choose)
+
+            if self.Message_two('已导出到D盘根目录,是否打开') == QMessageBox.Yes:
+                # time.sleep(6)
+                try:
+                    #阻塞加start
+                    os.system('start '+fileName_choose)
+
+                except Exception:
+                    print_exc()
+
+
+
+
+        except Exception:
+            print_exc()
+
+
+
+
+
+
+
+
+
 
 
     def Clean_All(self):
@@ -342,6 +416,7 @@ class Wirte_wireinfo(Ui_MainWindow, Farther, No_Main_Window,QMainWindow):
 
 
 if __name__ == "__main__":
+    set_server_ip_admin_password_database('172.17.130.106:5900', 'sa', '123456', 'xueshengxinxi')
     import Thing_Check_monther
     app = QtWidgets.QApplication(argv)
     ui = Wirte_wireinfo()
